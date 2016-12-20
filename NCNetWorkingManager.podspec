@@ -52,10 +52,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "NCNetWorkManage" => "15521437974@163.com" }
-  # Or just: s.author    = "NCNetWorkManage"
-  # s.authors            = { "NCNetWorkManage" => "15521437974@163.com" }
-  # s.social_media_url   = "http://twitter.com/NCNetWorkManage"
+  s.author             = { "NCNetWorkingManager" => "15521437974@163.com" }
+  # Or just: s.author    = "NCNetWorkingManager"
+  # s.authors            = { "NCNetWorkingManager" => "15521437974@163.com" }
+  # s.social_media_url   = "http://github.com/LckAction/NCNetWorkingManager"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/NCNetWorkingManager.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/LuckAction/NCNetWorkingManager.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
