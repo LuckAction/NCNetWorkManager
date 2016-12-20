@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint NCNetWorkingManager.podspec' to ensure this is a
+#  Be sure to run `pod spec lint NCNetWorkManager.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,19 +15,18 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "NCNetWorkingManager"
+  s.name         = "NCNetWorkManager"
   s.version      = "0.0.1"
-  s.summary      = "A short description of NCNetWorkingManager."
+  s.summary      = "A short description of NCNetWorkManager."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = <<-DESC
-                   DESC
+  s.description  = 'NCNetWorkManager 是为了解决繁琐的http协议与数据解析'
 
-  s.homepage     = "https://github.com/LuckAction/NCNetWorkingManager"
+  s.homepage     = "https://github.com/LuckAction/NCNetWorkManager"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -52,10 +51,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "NCNetWorkingManager" => "15521437974@163.com" }
-  # Or just: s.author    = "NCNetWorkingManager"
-  # s.authors            = { "NCNetWorkingManager" => "15521437974@163.com" }
-  # s.social_media_url   = "http://github.com/LckAction/NCNetWorkingManager"
+  s.author             = { "NCNetWorkManage" => "15521437974@163.com" }
+  # Or just: s.author    = "NCNetWorkManage"
+  # s.authors            = { "NCNetWorkManage" => "15521437974@163.com" }
+  # s.social_media_url   = "http://twitter.com/NCNetWorkManage"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -79,7 +78,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/LuckAction/NCNetWorkingManager.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/LuckAction/NCNetWorkManager.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,7 +130,7 @@ Pod::Spec.new do |s|
 
   # s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  # * s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
 
 end
