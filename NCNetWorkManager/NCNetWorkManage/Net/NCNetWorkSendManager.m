@@ -1,0 +1,184 @@
+//
+//  GuanjiaMiaoAFHManager.m
+//  MiaowStudentPro
+//
+//  Created by luck chen on 2016/12/7.
+//  Copyright © 2016年 luck chen. All rights reserved.
+//
+
+#import "NCNetWorkSendManager.h"
+#import "MJExtension.h"
+
+static NCNetWorkSendManager * shareAFNManager = nil;
+@implementation NCNetWorkSendManager
+
++ (NCNetWorkSendManager*)shareAFNManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        shareAFNManager = [[NCNetWorkSendManager alloc]init];
+    });
+    return shareAFNManager;
+}
+
+- (NSString*)getHttpAction:(NSInteger)mode
+{
+    NSArray *array = @[@"getAction:",@"postAction:",@"putAction:",@"delAction:"];
+    return (mode < array.count)?array[mode]:nil;
+}
+- (NSString*)getSyncMode:(NSInteger)mode
+{
+    NSArray *array = @[@"GET",@"POST",@"PUT",@"DELETE"];
+    return (mode < array.count)?array[mode]:nil;
+}
+//同步请求
+- (id)startSyncConnect:(NCNetConnData *)pnet_data error:(NSError **)error
+{
+    [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
+    
+    NSMutableDictionary *headerField = [[NSMutableDictionary alloc]init];
+    NSString *model = [[NSString alloc]initWithFormat:@"iOS %@",[[UIDevice currentDevice] systemVersion]];
+
+    [headerField setValue:@"application/json" forKey:@"Accept"];
+    [headerField setValue:model forKey:@"X-Oc-Os-Model"];
+    [headerField setValue:pnet_data.Content_Type forKey:@"Content-Type"];
+
+    return [self syncRequest:pnet_data headerFields:headerField error:error];
+}
+
+//异步请求
+- (void)startConnect:(NCNetConnData *)pnet_data
+{
+     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
+
+    unsigned over_time = pnet_data.over_time;
+    self.responseSerializer = [AFHTTPResponseSerializer serializer];
+    self.requestSerializer.timeoutInterval = over_time;
+    [self.requestSerializer setValue:pnet_data.Content_Type forHTTPHeaderField:@"Content-Type"];
+    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSString *model = [[NSString alloc]initWithFormat:@"iOS %@",[[UIDevice currentDevice] systemVersion]];
+    [self.requestSerializer setValue:model forHTTPHeaderField:@"X-Oc-Os-Model"];
+
+    NSString *smlSTR = [self getHttpAction:pnet_data.http_mode];
+    SuppressPerformSelectorLeakWarning([self performSelector:NSSelectorFromString(smlSTR) withObject:pnet_data]);
+}
+
+
+- (void)getAction:(NCNetConnData *)pnet_data
+{
+    __strong typeof(pnet_data) strongPnet_data = pnet_data;
+    [shareAFNManager GET:[pnet_data.url absoluteString]  parameters:[pnet_data.send_wrap getParameters] progress:^(NSProgress * _Nonnull uploadProgress) {
+        [NCNetWorkNetManager AFNCompleteProgress:strongPnet_data progress:uploadProgress];
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NCNetWorkNetManager AFNCompleteSuccess:strongPnet_data responseObject:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NCNetWorkNetManager AFNCompleteFail:strongPnet_data error:error];
+    }];
+}
+
+- (void)postAction:(NCNetConnData *)pnet_data
+{
+    __strong typeof(pnet_data) strongPnet_data = pnet_data;
+    //图文/媒体上传
+    [self POST:[pnet_data.url absoluteString] parameters:[pnet_data.send_wrap getParameters] constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //上传
+        /*
+         此方法参数
+         1. 要上传的[二进制数据]
+         2. 对应网站上[upload.php中]处理文件的[字段"file"]
+         3. 要保存在服务器上的[文件名]
+         4. 上传文件的[mimeType]
+         */
+        for(NCNetMediaCakeData *pnet_data in strongPnet_data.media_data)
+        {
+            [formData appendPartWithFileData:pnet_data.content_data name:pnet_data.name_key fileName:pnet_data.file_name mimeType:pnet_data.content_type];
+
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        [NCNetWorkNetManager AFNCompleteProgress:strongPnet_data progress:uploadProgress];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NCNetWorkNetManager AFNCompleteSuccess:strongPnet_data responseObject:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NCNetWorkNetManager AFNCompleteFail:strongPnet_data error:error];
+    }];
+}
+
+- (void)putAction:(NCNetConnData *)pnet_data
+{
+    __strong typeof(pnet_data) strongPnet_data = pnet_data;
+    [self PUT:[pnet_data.url absoluteString]  parameters:[pnet_data.send_wrap getParameters] success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [NCNetWorkNetManager AFNCompleteSuccess:strongPnet_data responseObject:responseObject];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NCNetWorkNetManager AFNCompleteFail:strongPnet_data error:error];
+    }];
+}
+
+- (void)delAction:(NCNetConnData *)pnet_data
+{
+    __strong typeof(pnet_data) strongPnet_data = pnet_data;
+    [self DELETE:[pnet_data.url absoluteString]  parameters:[pnet_data.send_wrap getParameters] success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        [NCNetWorkNetManager AFNCompleteSuccess:strongPnet_data responseObject:responseObject];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+        [NCNetWorkNetManager AFNCompleteFail:strongPnet_data error:error];
+
+    }];
+}
+
+#pragma mark - 同步请求
+-(id)syncRequest:(NCNetConnData *)pnet_data headerFields:(NSDictionary*)headerFields error:(NSError**)error
+{
+    //第二步，创建请求
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:pnet_data.url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:pnet_data.over_time];
+    request.allHTTPHeaderFields = headerFields;
+    [request setHTTPMethod:[self getSyncMode:pnet_data.http_mode]];//设置请求方式，默认为GET
+    [request setHTTPBody:pnet_data.updata_data];
+    NSError *err = nil;
+    //第三步，连接服务器
+    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
+    [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
+    if (err) {
+        *error = err;
+    }
+    return [self upData:pnet_data responseObject:received error:error];
+}
+
+- (id)upData:(NCNetConnData *)connData responseObject:(NSData*)responseObject error:(NSError**)error
+{
+    NSError *err;
+
+    if (!responseObject) {
+        err = [[NSError alloc]initWithDomain:@"获取不到数据" code:-1000 userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:@"数据为空",@"NSDebugDescription", nil]];
+        *error = err;
+        return nil;
+    }
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if (err) {
+        NSString *json = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+        *error = err;
+        return json;
+    }
+    //检测是否替换测试数据
+    if ([NCNetWorkNetManager shareNCNetWorkNetManager].openTest) {
+        //检测是否替换测试数据
+        SEL testSel = NSSelectorFromString(NSStringFromClass(((BaseSendInfoGJM*)connData.send_wrap).class)) ;
+        SuppressPerformSelectorLeakWarning(dic = [[NCNetWorkNetManager shareNCNetWorkNetManager].testClass performSelector:testSel withObject:dic]); //替换成测试数据
+    }
+
+    id return_data = [connData.send_wrap return_unpack_wrap:dic];
+    if(return_data != nil)
+    {
+        connData.recv_wrap = return_data;
+        [return_data update_info:connData.send_wrap];
+        if(connData.OnSuccessFunc) (connData.OnSuccessFunc)(return_data);
+    }
+    if (err) {
+        *error = err;
+    }
+    return return_data;
+}
+@end
