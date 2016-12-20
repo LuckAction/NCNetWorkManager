@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "NCNetWorkingManager"
   s.version      = "0.0.1"
-  echo 2.3 > .swift-version
+  echo 3.0 > .swift-version
   s.summary      = "A short description of NCNetWorkingManager."
 
   # This description is used to generate tags and improve search results.
