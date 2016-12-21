@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C33D9F9A1E095502004C196D /* NSArray+AssociatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9F991E095502004C196D /* NSArray+AssociatedObject.m */; };
+		C33D9F9D1E095C86004C196D /* NSObject+AssociatedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9F9C1E095C86004C196D /* NSObject+AssociatedObject.m */; };
 		C350C5B21E0510FE00537300 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C5B11E0510FE00537300 /* main.m */; };
 		C350C5B51E0510FE00537300 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C5B41E0510FE00537300 /* AppDelegate.m */; };
 		C350C5B81E0510FE00537300 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C5B71E0510FE00537300 /* ViewController.m */; };
@@ -39,7 +41,6 @@
 		C350C6321E0511C400537300 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C5FF1E0511C300537300 /* NSObject+MJProperty.m */; };
 		C350C6331E0511C400537300 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6011E0511C300537300 /* NSString+MJExtension.m */; };
 		C350C6341E0511C400537300 /* NCNetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6051E0511C300537300 /* NCNetModel.m */; };
-		C350C6361E0511C400537300 /* NCNSMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6091E0511C300537300 /* NCNSMutableArray.m */; };
 		C350C6371E0511C400537300 /* DictionaryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C60C1E0511C300537300 /* DictionaryQueue.m */; };
 		C350C6381E0511C400537300 /* QueueObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C60E1E0511C300537300 /* QueueObj.m */; };
 		C350C6391E0511C400537300 /* StackObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6101E0511C300537300 /* StackObj.m */; };
@@ -52,6 +53,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C33D9F981E095502004C196D /* NSArray+AssociatedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+AssociatedObject.h"; sourceTree = "<group>"; };
+		C33D9F991E095502004C196D /* NSArray+AssociatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+AssociatedObject.m"; sourceTree = "<group>"; };
+		C33D9F9B1E095C86004C196D /* NSObject+AssociatedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AssociatedObject.h"; sourceTree = "<group>"; };
+		C33D9F9C1E095C86004C196D /* NSObject+AssociatedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AssociatedObject.m"; sourceTree = "<group>"; };
 		C350C5AD1E0510FE00537300 /* NCNetWorkManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NCNetWorkManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350C5B11E0510FE00537300 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C350C5B31E0510FE00537300 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,8 +123,6 @@
 		C350C6011E0511C300537300 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
 		C350C6041E0511C300537300 /* NCNetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetModel.h; sourceTree = "<group>"; };
 		C350C6051E0511C300537300 /* NCNetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetModel.m; sourceTree = "<group>"; };
-		C350C6081E0511C300537300 /* NCNSMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNSMutableArray.h; sourceTree = "<group>"; };
-		C350C6091E0511C300537300 /* NCNSMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNSMutableArray.m; sourceTree = "<group>"; };
 		C350C60B1E0511C300537300 /* DictionaryQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryQueue.h; sourceTree = "<group>"; };
 		C350C60C1E0511C300537300 /* DictionaryQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryQueue.m; sourceTree = "<group>"; };
 		C350C60D1E0511C300537300 /* QueueObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueObj.h; sourceTree = "<group>"; };
@@ -313,8 +316,6 @@
 			children = (
 				C350C6041E0511C300537300 /* NCNetModel.h */,
 				C350C6051E0511C300537300 /* NCNetModel.m */,
-				C350C6081E0511C300537300 /* NCNSMutableArray.h */,
-				C350C6091E0511C300537300 /* NCNSMutableArray.m */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -342,6 +343,10 @@
 				C350C6161E0511C300537300 /* NCNetWorkSendManager.m */,
 				C350C6171E0511C300537300 /* NCNetWorkWrapStruct.h */,
 				C350C6181E0511C300537300 /* NCNetWorkWrapStruct.m */,
+				C33D9F9B1E095C86004C196D /* NSObject+AssociatedObject.h */,
+				C33D9F9C1E095C86004C196D /* NSObject+AssociatedObject.m */,
+				C33D9F981E095502004C196D /* NSArray+AssociatedObject.h */,
+				C33D9F991E095502004C196D /* NSArray+AssociatedObject.m */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C33D9F9D1E095C86004C196D /* NSObject+AssociatedObject.m in Sources */,
 				C350C6271E0511C300537300 /* UIProgressView+AFNetworking.m in Sources */,
 				C350C62D1E0511C300537300 /* MJPropertyKey.m in Sources */,
 				C350C6311E0511C400537300 /* NSObject+MJKeyValue.m in Sources */,
@@ -425,6 +431,7 @@
 				C350C6291E0511C300537300 /* UIWebView+AFNetworking.m in Sources */,
 				C350C62B1E0511C300537300 /* MJFoundation.m in Sources */,
 				C350C6261E0511C300537300 /* UIImageView+AFNetworking.m in Sources */,
+				C33D9F9A1E095502004C196D /* NSArray+AssociatedObject.m in Sources */,
 				C350C63C1E0511C400537300 /* NCNetWorkWrapStruct.m in Sources */,
 				C350C6371E0511C400537300 /* DictionaryQueue.m in Sources */,
 				C350C5B81E0510FE00537300 /* ViewController.m in Sources */,
@@ -451,7 +458,6 @@
 				C350C6221E0511C300537300 /* AFImageDownloader.m in Sources */,
 				C350C6331E0511C400537300 /* NSString+MJExtension.m in Sources */,
 				C350C62F1E0511C300537300 /* NSObject+MJClass.m in Sources */,
-				C350C6361E0511C400537300 /* NCNSMutableArray.m in Sources */,
 				C350C62E1E0511C300537300 /* MJPropertyType.m in Sources */,
 				C350C63B1E0511C400537300 /* NCNetWorkSendManager.m in Sources */,
 				C350C6341E0511C400537300 /* NCNetModel.m in Sources */,
@@ -522,9 +528,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -563,8 +570,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

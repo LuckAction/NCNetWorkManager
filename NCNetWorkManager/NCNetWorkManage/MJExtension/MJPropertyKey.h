@@ -23,7 +23,7 @@ typedef enum {
 /** key的种类，可能是@"10"，可能是@"age" */
 @property (assign, nonatomic) MJPropertyKeyType type;
 /** 成员属性的类型 */
-@property (nonatomic, assign) Class modelClass;
+@property (nonatomic, strong) Class modelClass;
 @property (nonatomic, assign) Class fatherClass;
 
 /**

@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 #import "NCNetCollection.h"
+#import "NCNetWorkNetManager.h"
+#define XcodeAppBundle [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
+#define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
 @interface AppDelegate ()
 
 @end
@@ -17,17 +21,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
     //打开测试模式，默认为关闭，传入测试案例的类
-    [NCNetWorkNetManager openWrapTest:NO testClass:NCNetTest.class];
+    [NCNetWorkNetManager openWrapTest:TRUE testClass:NCNetTest.class];
     //打开日志
     [NCNetWorkNetManager openLog:TRUE];
     
     // 启动系统风火轮
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
     //同步请求测试用例
     UpdateServer *update = [[UpdateServer alloc]init];
-    update.url = @"https://www.baidu.com";
+    update.url = @"http://urlv2.kewaimiao.com?appid=com.kewaimiao.iosapp&version=3.0.312";
     update.age = 18;
     update.name = @"99909" ;
     NSError *error = nil;

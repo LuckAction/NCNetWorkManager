@@ -117,20 +117,42 @@
         if ([objclass isSubclassOfClass:[NCNetModel class]]) {
             WRAP_UNPACK_DIC(key, objclass)
         }else if((objclass == [NSArray class]) || (objclass == [NSMutableArray class]) ){
-            WRAP_UNPACK_ARRAY(key, objclass)
+            NSMutableArray *modelArray = [self valueForKey:key];
+            if (modelArray.childClass) {
+                WRAP_UNPACK_NCARRAY(key,modelArray.childClass)
+            }else{
+                WRAP_UNPACK_ARRAY(key, objclass)
+            }
         }else if((objclass == [NSDictionary class]) || (objclass == [NSMutableDictionary class])){
             [self setValue:dic[key] forKey:key];
-        }else if (objclass == [NCNSMutableArray class]){
-            NCNSMutableArray *modelArray = [self valueForKey:key];
-            if (modelArray.objClass) {
-                WRAP_UNPACK_NCARRAY(key, modelArray.objClass)
-            }
         }else {
             if (dic[key]) {
                 [self setValue:dic[key] forKey:key];
             }
         }
     }
+}
+
+
+- (void)paring:(NSDictionary *)dic key:(NSString*)key Class:(Class)class
+{
+NSArray *child_array = dic[key];
+NSMutableArray *objArray = [[NSMutableArray alloc]init];
+NSMutableArray *modelArray = [self valueForKey:key];
+
+if (child_array != NULL && [child_array isKindOfClass:[NSArray class]] && child_array.count > 0)
+{
+unsigned num = 0;
+for (id child_dic in child_array)
+{
+NCNetModel *child_value = [class mj_objectWithKeyValues:child_dic];
+if(![child_value unpack_nsdic:child_dic]) continue;
+[objArray addObject:child_value];
+num++;
+}
+}
+[modelArray addObjectsFromArray:objArray];
+if (modelArray) [self setValue:modelArray forKey:key];
 }
 
 @end

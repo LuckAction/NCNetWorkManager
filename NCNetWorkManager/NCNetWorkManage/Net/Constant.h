@@ -58,8 +58,8 @@ if(![child_value unpack_nsdic:child_dic]) continue; \
 num++;\
 }\
 }\
-id childObj = [NCNSMutableArray arrayWithObjectClass:NS_TYPE array:objArray];\
-if (childObj) [self setValue:childObj forKey:key];\
+[modelArray addObjectsFromArray:objArray];\
+if (modelArray) [self setValue:modelArray forKey:key];\
 }
 
 #define WRAP_UNPACK_DIC(value,NS_TYPE)\
@@ -71,6 +71,7 @@ NCNetModel *model = [self valueForKey:value];\
 [model unpack_nsdic:dic];\
 }\
 }
+
 #define URL(string) [NSURL URLWithString:string]
 
 #if _DEBUG_LOCAL_RETURN_

@@ -129,8 +129,7 @@ static NSNumberFormatter *numberFormatter_;
             }
             
             if (!type.isFromFoundation && propertyClass) { // 模型属性
-                if (![value isKindOfClass:[NCNSMutableArray class]])
-                {
+                if (!((NSObject*)value).childClass) {
                     value = [propertyClass mj_objectWithKeyValues:value context:context];
                 }
 

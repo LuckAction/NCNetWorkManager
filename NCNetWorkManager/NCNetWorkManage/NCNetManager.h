@@ -12,8 +12,8 @@
 #import "AFNetworking.h"
 #import "MJExtension.h"
 #import "NCNetModel.h"
-#import "NCNSMutableArray.h"
 #import "NCNetWorkWrapStruct.h"
 #import "NCNetWorkNetManager.h"
-#import "NCNSMutableArray.h"
+#import "NSArray+AssociatedObject.h"
+
 #endif /* NCNetManager_h */

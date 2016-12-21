@@ -38,8 +38,8 @@
 {
     self = [super init];
     if (self) {
-        self.userList = [NCNSMutableArray arrayWithObjectClass:UserData.class];//初始化，指定数组里的对象类型UserData.class
-        self.carList = [NCNSMutableArray arrayWithObjectClass:Car.class];//初始化，指定carList数组里的对象类型Car
+        self.userList = [[NSMutableArray alloc]initWithChildClass:UserData.class];//初始化，指定数组里的对象类型UserData.class
+        self.carList = [[NSMutableArray alloc]initWithChildClass:Car.class];//初始化，指定carList数组里的对象类型Car
         
     }
     return self;
@@ -53,7 +53,7 @@
 {
     self = [super init];
     if (self) {
-        self.userList = [NCNSMutableArray arrayWithObjectClass:UserData.class];
+        self.userList = [[NSMutableArray alloc]initWithChildClass:UserData.class];
     }
     return self;
 }
@@ -66,7 +66,7 @@
 {
     self = [super init];
     if (self) {
-        self.userList = [NCNSMutableArray arrayWithObjectClass:People.class];
+        self.userList = [[NSMutableArray alloc]initWithChildClass:UserData.class];
     }
     return self;
 }

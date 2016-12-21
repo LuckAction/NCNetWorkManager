@@ -24,7 +24,11 @@ RETURN_MODEL_FUNC(Re_UpdateServer)
 - (instancetype)init
 {
     self = [super init];
-    self.userList = [NCNSMutableArray arrayWithObjectClass:UserData.class];//初始化，指定数组里的对象类型UserData.class
+    self.userList = [[NSMutableArray alloc]initWithChildClass:UserData.class];
+    NSLog(@"self.userList class = %@",self.userList.childClass);
+
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    NSLog(@"array class = %@",array.childClass);
     return self;
 }
 /*

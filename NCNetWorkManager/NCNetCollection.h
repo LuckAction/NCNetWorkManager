@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "NCNetDataCollect.h"
 #import "NCNetTest.h"
-
+#import "NCNetWorkWrapStruct.h"
 @interface NCNetCollection : NSObject
 
 @end
 
 #pragma mark --- UpdateServer ---
 
-@interface UpdateServer : GetSend//继承相应的请求类型
+@interface UpdateServer : PostSend//继承相应的请求类型
 @property(nonatomic,assign) NSInteger age;
 @property(nonatomic,strong) NSString *name;
 
@@ -26,7 +26,7 @@
 @property(nonatomic,assign) NSInteger age;
 @property(nonatomic,strong) NSString *name;
 @property(nonatomic,strong) ServerModel *data;
-@property(nonatomic,strong) NCNSMutableArray *userList;
+@property(nonatomic,strong) NSMutableArray *userList;
 
 @end
 

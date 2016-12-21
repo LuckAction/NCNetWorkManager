@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NCNetModel.h"
 @class UserData;
-@class BaseUserData;
+@class People;
 @class ServerModel;
 
 @interface NCNetDataCollect : NSObject
@@ -36,8 +37,8 @@
 @property (nonatomic,assign) NSInteger maintenance_mode;
 @property (nonatomic,strong) NSString* upgrade_message;
 @property (nonatomic,assign) BOOL isShowQuestionAnswer;
-@property (nonatomic,strong) BaseUserData *user;
-@property (nonatomic,strong) NCNSMutableArray* userList;
+@property (nonatomic,strong) People *user;
+@property (nonatomic,strong) NSMutableArray* userList;
 
 @end
 
@@ -58,9 +59,9 @@
  用户结构
  */
 @interface UserData : People
-@property (nonatomic,strong) NCNSMutableArray* userList;
+@property (nonatomic,strong) NSMutableArray* userList;
 @property (nonatomic,strong) UserData *child;
-@property (nonatomic,strong) NCNSMutableArray* carList;
+@property (nonatomic,strong) NSMutableArray* carList;
 
 @end
 /*
@@ -70,6 +71,6 @@
 @interface Car : NCNetModel
 @property (nonatomic,strong) NSString* name;
 @property (nonatomic,strong) NSString* color;
-@property (nonatomic,strong) NCNSMutableArray* userList;//汽车的使用者列表People
+@property (nonatomic,strong) NSMutableArray* userList;//汽车的使用者列表People
 
 @end

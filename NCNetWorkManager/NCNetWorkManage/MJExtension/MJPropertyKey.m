@@ -7,7 +7,6 @@
 //
 
 #import "MJPropertyKey.h"
-#import "NCNSMutableArray.h"
 #import "MJExtension.h"
 #import "NCNetModel.h"
 #define GETMODELARRAY(shuxing)\
@@ -28,13 +27,11 @@ modelArray = (NCNSMutableArray*)(father.shuxing);\
         }
     }
     if ([object isKindOfClass:[NSDictionary class]] && self.type == MJPropertyKeyTypeDictionary) {
-        if (self.modelClass == [NCNSMutableArray class]) {
-            id father = [[self.fatherClass alloc]init];
-            NCNSMutableArray *modelArray = [(NCNetModel*)father getPrivateProperty:self.name];
-            if ([modelArray isKindOfClass:[NCNSMutableArray class]]) {
-                id child = [modelArray pasing:object key:self.name];
-                if (child) return child;
-            }
+        id father = [[self.fatherClass alloc]init];
+        NSMutableArray *modelArray = [father valueForKey:self.name];
+        if ([modelArray isKindOfClass:[NSArray class]] || [modelArray isKindOfClass:[NSMutableArray class]]) {
+            id child = [modelArray pasing:object key:self.name];
+            if (child) return child;
         }
         return object[self.name];
     } else if ([object isKindOfClass:[NSArray class]] && self.type == MJPropertyKeyTypeArray) {

@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint NCNetWorkManager.podspec' to ensure this is a
+#  Be sure to run `pod spec lint NCNetWorkingManager.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,17 +15,19 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "NCNetWorkManager"
-  s.version      = "1.0.0"
-  s.summary      = " NCNetWorkManager."
+  s.name         = "NCNetWorkingManager"
+  s.version      = "0.0.1"
+  s.summary      = "A short description of NCNetWorkingManager."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  s.description  = " NCNetWorkManager 网络交互"
-  s.homepage     = "https://github.com/LuckAction/NCNetWorkManager"
+  s.description  = <<-DESC
+                   DESC
+
+  s.homepage     = "http://EXAMPLE/NCNetWorkingManager"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -36,7 +38,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
+  s.license      = "MIT (example)"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -50,10 +52,10 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "Luck chen" => "15521437974@163.com" }
-  # Or just: s.author    = "NCNetWorkManager"
-  # s.authors            = { "NCNetWorkManager" => "15521437974@163.com" }
-  # s.social_media_url   = "http://twitter.com/NCNetWorkManager"
+  s.author             = { "NCNetWorkManage" => "15521437974@163.com" }
+  # Or just: s.author    = "NCNetWorkManage"
+  # s.authors            = { "NCNetWorkManage" => "15521437974@163.com" }
+  # s.social_media_url   = "http://twitter.com/NCNetWorkManage"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -61,18 +63,23 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-   s.platform     = :ios, "8.0"
+  # s.platform     = :ios
+  # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  # s.ios.deployment_target = "8.0"
- 
+  # s.ios.deployment_target = "5.0"
+  # s.osx.deployment_target = "10.7"
+  # s.watchos.deployment_target = "2.0"
+  # s.tvos.deployment_target = "9.0"
+
+
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  Specify the location from where the source should be retrieved.
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/LuckAction/NCNetWorkManager.git", :tag => "#{s.version}" }
+  s.source       = { :git => "http://EXAMPLE/NCNetWorkingManager.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -83,10 +90,10 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "NCNetWorkManager", "NCNetWorkManager/**/*.{h,m}"
- # s.exclude_files = "Classes/Exclude"
+  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "NCNetWorkManager/**/*.h"
+  # s.public_header_files = "Classes/**/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -126,6 +133,5 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
-# s.dependency "AFNetworking", "~> 3.1.0"
-end
 
+end
