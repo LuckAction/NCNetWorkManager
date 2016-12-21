@@ -11,7 +11,6 @@
 {
     self = [super init];
     self->_mode = model;
-    self->_selStr = NSStringFromClass(self.class);
     return self;
 
 }
@@ -111,7 +110,6 @@
 - (void)paring:(NSDictionary *)dic
 {
     NSMutableDictionary *properDic = [self getAllPropertiesAndValue];
-    
     for (NSString *key in [properDic allKeys]) {
         Class objclass = NSClassFromString([properDic objectForKey:key]);
         if ([objclass isSubclassOfClass:[NCNetModel class]]) {
@@ -131,28 +129,6 @@
             }
         }
     }
-}
-
-
-- (void)paring:(NSDictionary *)dic key:(NSString*)key Class:(Class)class
-{
-NSArray *child_array = dic[key];
-NSMutableArray *objArray = [[NSMutableArray alloc]init];
-NSMutableArray *modelArray = [self valueForKey:key];
-
-if (child_array != NULL && [child_array isKindOfClass:[NSArray class]] && child_array.count > 0)
-{
-unsigned num = 0;
-for (id child_dic in child_array)
-{
-NCNetModel *child_value = [class mj_objectWithKeyValues:child_dic];
-if(![child_value unpack_nsdic:child_dic]) continue;
-[objArray addObject:child_value];
-num++;
-}
-}
-[modelArray addObjectsFromArray:objArray];
-if (modelArray) [self setValue:modelArray forKey:key];
 }
 
 @end

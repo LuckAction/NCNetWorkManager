@@ -19,10 +19,12 @@
 
 + (id)nc_objectWithKeyValuesWith:(Class)modelClass value:(id)value
 {
-    NCNetModel *modelObj = [modelClass mj_objectWithKeyValues:value];
-    [modelObj unpack_nsdic:value];
-    return modelObj;
-
+    if (value && modelClass) {
+        NCNetModel *modelObj = [modelClass mj_objectWithKeyValues:value];
+        [modelObj unpack_nsdic:value];
+        return modelObj;
+    }
+    return value;
 }
 /* 根据属性名，获取属性值 */
 - (id)getPrivateProperty:(NSString *)propertyName

@@ -19,9 +19,7 @@ modelArray = (NCNSMutableArray*)(father.shuxing);\
 - (id)valueInObject:(id)object
 {
     if ([self.modelClass isSubclassOfClass:[NCNetModel class]]) {
-        NSDictionary *dic = [(NSDictionary*)object objectForKey:self.name];
-        if (dic) return [NCNetModel nc_objectWithKeyValuesWith:self.modelClass value:dic];
-
+        return [NCNetModel nc_objectWithKeyValuesWith:self.modelClass value:[(NSDictionary*)object objectForKey:self.name]];
     }
     if ([object isKindOfClass:[NSDictionary class]] && self.type == MJPropertyKeyTypeDictionary) {
         id father = [[self.fatherClass alloc]init];

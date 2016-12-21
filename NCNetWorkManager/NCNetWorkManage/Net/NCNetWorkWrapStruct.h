@@ -13,7 +13,6 @@
 @property (assign,nonatomic,readonly) NSInteger mode;
 @property (strong,nonatomic) NSString *portStr;
 @property (strong,nonatomic) NSString *url;
-@property (strong,nonatomic,readonly) NSString *selStr;
 @property (strong,nonatomic) NSMutableArray *media_data;
 @property (nonatomic, assign) BOOL isSynchronous; // 是否用同步方式发送请求
 @property (nonatomic,strong) void (^OnSuccessFunc)(id result);
