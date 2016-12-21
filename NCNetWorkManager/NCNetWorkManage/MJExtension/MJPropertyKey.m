@@ -20,18 +20,14 @@ modelArray = (NCNSMutableArray*)(father.shuxing);\
 {
     if ([self.modelClass isSubclassOfClass:[NCNetModel class]]) {
         NSDictionary *dic = [(NSDictionary*)object objectForKey:self.name];
-        if (dic) {
-            NCNetModel *resultsObj = [self.modelClass mj_objectWithKeyValues:dic];
-            [resultsObj unpack_nsdic:dic];
-            return resultsObj;
-        }
+        if (dic) return [NCNetModel nc_objectWithKeyValuesWith:self.modelClass value:dic];
+
     }
     if ([object isKindOfClass:[NSDictionary class]] && self.type == MJPropertyKeyTypeDictionary) {
         id father = [[self.fatherClass alloc]init];
         NSMutableArray *modelArray = [father valueForKey:self.name];
         if ([modelArray isKindOfClass:[NSArray class]] || [modelArray isKindOfClass:[NSMutableArray class]]) {
-            id child = [modelArray pasing:object key:self.name];
-            if (child) return child;
+            return [modelArray pasing:object key:self.name];
         }
         return object[self.name];
     } else if ([object isKindOfClass:[NSArray class]] && self.type == MJPropertyKeyTypeArray) {

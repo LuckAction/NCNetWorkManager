@@ -10,8 +10,6 @@
 
 @implementation NSArray (AssociatedObject)
 
-
-
 - (id)pasing:(id)object key:(NSString*)key{
     if (self.childClass) {
         id value = object[key];
@@ -19,20 +17,15 @@
             if ([child isKindOfClass:[NSArray class]] || [child isKindOfClass:[NSMutableArray class]]) {
                 NSMutableArray *array = child;
                 for (id childData in array) {
-                    NCNetModel *resultsObj = [self.childClass mj_objectWithKeyValues:childData];
-                    [resultsObj unpack_nsdic:childData];
-                    [(NSMutableArray *)self addObject:resultsObj];
+                    id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:childData];
+                    if (modelData) [(NSMutableArray *)self addObject:modelData];
                 }
-                
             }else if([object isKindOfClass:[NSDictionary class]]){
-                id modelData = [self.childClass mj_objectWithKeyValues:child];
-                [modelData unpack_nsdic:child];
-                if (child) [(NSMutableArray *)self addObject:modelData];
+                id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:child];
+                if (modelData) [(NSMutableArray *)self addObject:modelData];
             }else{
                 if (child) [(NSMutableArray *)self addObject:child];
-
             }
-
         }
     }
     return self;

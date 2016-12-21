@@ -16,6 +16,14 @@
     }
     return self;
 }
+
++ (id)nc_objectWithKeyValuesWith:(Class)modelClass value:(id)value
+{
+    NCNetModel *modelObj = [modelClass mj_objectWithKeyValues:value];
+    [modelObj unpack_nsdic:value];
+    return modelObj;
+
+}
 /* 根据属性名，获取属性值 */
 - (id)getPrivateProperty:(NSString *)propertyName
 {

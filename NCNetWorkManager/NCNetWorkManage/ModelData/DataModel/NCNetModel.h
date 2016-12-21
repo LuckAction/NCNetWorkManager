@@ -3,6 +3,9 @@
 #import "MJFoundation.h"
 
 @interface NCNetModel : MJFoundation
+
++ (id)nc_objectWithKeyValuesWith:(Class)modelClass value:(id)value;
+
 - (BOOL)unpack_nsdic:(NSDictionary *)dic;
 - (id)wrap_pack;
 - (id)getPrivateProperty:(NSString *)propertyName;
