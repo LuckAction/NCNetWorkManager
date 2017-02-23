@@ -11,8 +11,12 @@
 @implementation NCNetCollection
 
 @end
+@interface UpdateServer()
+@property(nonatomic,strong,readonly) NSString *name;
+@end
 
 @implementation UpdateServer
+
 RETURN_MODEL(Re_UpdateServer)
 @end
 

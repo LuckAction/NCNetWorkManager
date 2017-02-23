@@ -80,15 +80,17 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 @property (nonatomic,readonly) QueueObj *waitQueue;
 @property (nonatomic,assign)   NSInteger afnCount; //当前连接数
 @property (nonatomic,readonly) NetManageState netState;
+@property (nonatomic,readonly,assign) AFNetworkReachabilityStatus netType;
 @property (nonatomic,assign,readonly) BOOL openTest;
 @property (nonatomic,assign,readonly) BOOL openLogin;
 @property (nonatomic,assign,readonly) Class testClass;
 
 - (instancetype)init;
 + (NCNetWorkNetManager*)shareNCNetWorkNetManager;
-+ (void)openWrapTest:(BOOL)open testClass:(Class)class;
++ (void)openWrapTest:(BOOL)open testClass:(Class)_class;
 + (void)openLog:(BOOL)open;
 NS_ASSUME_NONNULL_BEGIN
++(void)connectUrl:(BaseSendInfoGJM *)send_struct;
 +(id)connectSyncUrl:(BaseSendInfoGJM *)send_struct error:(NSError**)error;
 +(void)connectUrl:(BaseSendInfoGJM *)send_struct OnSuccess:(void (^)(id result))Onsuccess onfail:(void (^)(NSError *result))Onfail;
 +(void)connectUrl:(BaseSendInfoGJM *)send_struct progress:(nullable void (^)(NSProgress *   progress))uploadProgress OnSuccess:(void (^  )(id   result))Onsuccess onfail:(void (^  )(NSError *   result))Onfail;

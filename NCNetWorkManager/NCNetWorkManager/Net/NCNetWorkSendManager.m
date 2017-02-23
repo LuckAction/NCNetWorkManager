@@ -6,8 +6,10 @@
 //  Copyright © 2016年 luck chen. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "NCNetWorkSendManager.h"
 #import "MJExtension.h"
+//#import "NSURLSession.h"
 
 static NCNetWorkSendManager * shareAFNManager = nil;
 @implementation NCNetWorkSendManager
@@ -31,34 +33,42 @@ static NCNetWorkSendManager * shareAFNManager = nil;
     NSArray *array = @[@"GET",@"POST",@"PUT",@"DELETE"];
     return (mode < array.count)?array[mode]:nil;
 }
+
+/*
+ http头文件编辑
+ */
+- (NSDictionary*)headerFields:(NCNetConnData *)pnet_data
+{
+    NSMutableDictionary *headerField = [[NSMutableDictionary alloc]init];
+
+    NSString *model = [[NSString alloc]initWithFormat:@"iOS %@",[[UIDevice currentDevice] systemVersion]];
+    
+    [headerField setValue:@"application/json" forKey:@"Accept"];
+    [headerField setValue:model forKey:@"X-Oc-Os-Model"];
+    [headerField setValue:pnet_data.Content_Type forKey:@"Content-Type"];
+    
+    return headerField;
+}
 //同步请求
 - (id)startSyncConnect:(NCNetConnData *)pnet_data error:(NSError **)error
 {
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
     
-    NSMutableDictionary *headerField = [[NSMutableDictionary alloc]init];
-    NSString *model = [[NSString alloc]initWithFormat:@"iOS %@",[[UIDevice currentDevice] systemVersion]];
-
-    [headerField setValue:@"application/json" forKey:@"Accept"];
-    [headerField setValue:model forKey:@"X-Oc-Os-Model"];
-    [headerField setValue:pnet_data.Content_Type forKey:@"Content-Type"];
-
-    return [self syncRequest:pnet_data headerFields:headerField error:error];
+    return [self syncRequest:pnet_data headerFields:[self headerFields:pnet_data] error:error];
 }
 
 //异步请求
 - (void)startConnect:(NCNetConnData *)pnet_data
 {
+    NSDictionary* headerFields =[self headerFields:pnet_data];
      [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
 
     unsigned over_time = pnet_data.over_time;
     self.responseSerializer = [AFHTTPResponseSerializer serializer];
     self.requestSerializer.timeoutInterval = over_time;
-    [self.requestSerializer setValue:pnet_data.Content_Type forHTTPHeaderField:@"Content-Type"];
-    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    NSString *model = [[NSString alloc]initWithFormat:@"iOS %@",[[UIDevice currentDevice] systemVersion]];
-    [self.requestSerializer setValue:model forHTTPHeaderField:@"X-Oc-Os-Model"];
-
+    for (NSString *key in [headerFields allKeys]) {
+        [self.requestSerializer setValue:headerFields[key] forHTTPHeaderField:key];
+    }
     NSString *smlSTR = [self getHttpAction:pnet_data.http_mode];
     SuppressPerformSelectorLeakWarning([self performSelector:NSSelectorFromString(smlSTR) withObject:pnet_data]);
 }
@@ -135,9 +145,30 @@ static NCNetWorkSendManager * shareAFNManager = nil;
     request.allHTTPHeaderFields = headerFields;
     [request setHTTPMethod:[self getSyncMode:pnet_data.http_mode]];//设置请求方式，默认为GET
     [request setHTTPBody:pnet_data.updata_data];
-    NSError *err = nil;
+    
+    __block NSError *err = nil;
+    __block NSData *received;
     //第三步，连接服务器
-    NSData *received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
+//    if (IOSSystemVersion9) {
+//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); //创建信号量
+//        //3.构造Session
+//        NSURLSession *session = [NSURLSession sharedSession];
+//        
+//        //4.task
+//        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+//            NSLog(@"dict:%@",dict);
+//            received = data;
+//            err = error;
+//            dispatch_semaphore_signal(semaphore);   //发送信号
+//        }];
+//        
+//        [task resume];
+//        dispatch_semaphore_wait(semaphore,DISPATCH_TIME_FOREVER);  //等待
+//        NSLog(@"数据加载完成！");
+//    }else{
+        received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
+//    }
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
     if (err) {
         *error = err;
@@ -159,7 +190,9 @@ static NCNetWorkSendManager * shareAFNManager = nil;
                                                           error:&err];
     if (err) {
         NSString *json = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        *error = err;
+        if (error) {
+            *error = err;
+        }
         return json;
     }
     //检测是否替换测试数据

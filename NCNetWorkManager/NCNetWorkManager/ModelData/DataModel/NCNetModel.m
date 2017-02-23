@@ -13,8 +13,22 @@
 {
     self = [super init];
     if (self) {
+        SuppressPerformSelectorLeakWarning(
+                                           class_addMethod(self.class, NSSelectorFromString(@"method:::"), (IMP)myAddingFunction, "i@:i@:i@");//新增方法
+        );
+        class_replaceMethod(self.class, @selector(setpeopelName:age:sex:), (IMP)myAddingFunction, "i@:i@:i@");//替换方法
     }
     return self;
+}
+
+- (NSString *)setpeopelName:(NSString*)name age:(NSString*)age sex:(NSString*)sex
+{
+    return [NSString stringWithFormat:@"%@=%@=%@",name,age,sex];
+}
+NSString* myAddingFunction(id self, SEL _cmd, NSString* var1, NSString *name,NSString * sex)
+{
+    NSLog(@"\n %@ = %@ \n",name,var1);
+    return [NSString stringWithFormat:@"%@=%@=%@",name,var1,sex];
 }
 
 + (id)nc_objectWithKeyValuesWith:(Class)modelClass value:(id)value
@@ -48,12 +62,12 @@
     return dic;
 }
 
-- (NSMutableArray*)getProArrayWith:(Class)class
+- (NSMutableArray*)getProArrayWith:(Class)_class
 {
     unsigned int count  = 0;
-    // 获取fatherClass里所有的成员属性
+    // 获取class里所有的成员属性
     NSMutableArray *array = [[NSMutableArray alloc]init];
-    Ivar *ivars = class_copyIvarList(class, &count);
+    Ivar *ivars = class_copyIvarList(_class, &count);
     for (int i = 0; i < count; i++) {
         // 获取成员属性
         Ivar ivar =  ivars[i];
@@ -70,10 +84,10 @@
     
 }
 /* 获取对象的所有属性，不包括属性值 */
-- (NSMutableArray*)getAllPropertiesWith:(Class)class
+- (NSMutableArray*)getAllPropertiesWith:(Class)_class
 {
     u_int count;
-    objc_property_t *properties  =class_copyPropertyList(class, &count);
+    objc_property_t *properties  =class_copyPropertyList(_class, &count);
     NSMutableArray *array = [[NSMutableArray alloc]init];
     
     for (int i = 0; i<count; i++)
@@ -85,11 +99,11 @@
     return array;
 }
 //获取类和父类的成员和属性名
-- (NSMutableDictionary*)getAllPropertiesAndValueWith:(Class)class
+- (NSMutableDictionary*)getAllPropertiesAndValueWith:(Class)_class
 {
     u_int count;
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-    Ivar *ivars = class_copyIvarList(class, &count);
+    Ivar *ivars = class_copyIvarList(_class, &count);
     
     for (int i = 0; i<count; i++)
     {
@@ -123,6 +137,40 @@
     }
     
     return properDic;
+}
+//修改属性的值
+- (void)setIvarValue:(id)value forkey:(NSString*)key
+{
+    unsigned int count = 0;
+    Ivar *ivars = class_copyIvarList(self.class, &count);
+    for (NSInteger i =0 ; i <count; i++) {
+        Ivar var = ivars[i];
+        NSString *type = [NSString stringWithUTF8String:ivar_getName(var)];
+        if ([type isEqualToString:[NSString stringWithFormat:@"_%@",key]]) {
+            object_setIvar(self, var, value);
+            i = count;
+        }
+    }
+    free(ivars);
+}
+
+//获取类中所有的所有私有方法
+- (NSMutableArray*)tryMemberFunc
+{
+    unsigned int count = 0;
+    Method *memberFuncs = class_copyMethodList([self class], &count);//所有在.m文件显式实现的方法都会被找到
+    NSMutableArray *array = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < count; i++) {
+        Method method = memberFuncs[i];
+        SEL name = method_getName(method);
+        
+        NSString *methodName = [NSString stringWithCString:sel_getName(name) encoding:NSUTF8StringEncoding];
+        [array addObject:methodName];
+        NSLog(@"member method:%@", methodName);
+
+    }
+    return array;
 }
 
 @end

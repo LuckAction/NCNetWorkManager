@@ -33,7 +33,13 @@
     UpdateServer *update = [[UpdateServer alloc]init];
     update.url = @"http://urlv2.kewaimiao.com?appid=com.kewaimiao.iosapp&version=3.0.312";
     update.age = 18;
-    update.name = @"99909" ;
+    NSString *name;
+    name = [update setpeopelName:@"chenhenian" age:@"26" sex:@"1"];
+    SuppressPerformSelectorLeakWarning(
+                                       name = [update performSelector:NSSelectorFromString(@"method:::") withObject:@"15" withObject:@"chenhenian"];
+    );
+
+    [update setIvarValue:name forkey:@"name"];
     NSError *error = nil;
     Re_UpdateServer *result = [NCNetWorkNetManager connectSyncUrl:update error:&error];
     if (error) {

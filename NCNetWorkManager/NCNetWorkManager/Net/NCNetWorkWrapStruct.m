@@ -4,7 +4,7 @@
 
 
 @implementation BaseSendInfoGJM
-@synthesize mode = _mode;
+@synthesize mode = _mode,parameterStr = _parameterStr;
 
 
 - (instancetype)initWith:(NSInteger)model
@@ -29,9 +29,13 @@
 -(NSURL *)connect_url
 {
     if ([NCNetWorkNetManager shareNCNetWorkNetManager].openLogin) NSLog(@"%@",self.url);
+
     return URL(self.url);//传进来的url
 }
-
+- (NSString *)parameterStr
+{
+    return _parameterStr;
+}
 - (NSMutableDictionary*)wrap_pack:(NSMutableDictionary*)dic{ return dic; }
 
 -(NSString *)description
@@ -102,7 +106,8 @@
 +(instancetype)wrap_unpack:(NSDictionary *)dic{ return nil; }
 -(BOOL)unpack_nsdic:(NSDictionary *)dic{
     if(dic == nil || dic.count == 0) return false;
-    [self paring:dic];//解析数据
+    if([NCNetWorkNetManager shareNCNetWorkNetManager].openLogin) NSLog(@"%@",dic);
+        [self paring:dic];//解析数据
     return true;
 }
 -(void)update_info:(id)send_struct{ return; }
@@ -128,6 +133,10 @@
                 [self setValue:dic[key] forKey:key];
             }
         }
+    }
+    /*特殊情况的处理*/
+    if (self.code == 401 | self.code == 400) {
+    }else if (self.code == 1001){
     }
 }
 

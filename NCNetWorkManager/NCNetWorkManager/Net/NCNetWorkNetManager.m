@@ -49,9 +49,10 @@
 {
     self = [self initInfo:info];
     if (self) {
+        self.updata_data = [info pack_to_nsdata];
+        self.media_data = info.media_data;
+
         if (info.mode != 0) {
-            self.updata_data = [info pack_to_nsdata];
-            self.media_data = info.media_data;
         }else{
         }
         
@@ -120,7 +121,7 @@
     [pns_data appendData:pspace_fu];
     
     self.updata_data = pns_data;
-}
+} 
 
 - (void)clean
 {
@@ -166,10 +167,10 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
     }
     return _waitQueue;
 }
-+ (void)openWrapTest:(BOOL)open testClass:(Class)class
++ (void)openWrapTest:(BOOL)open testClass:(Class)_class
 {
     [NCNetWorkNetManager shareNCNetWorkNetManager]->_openTest = open;
-    [NCNetWorkNetManager shareNCNetWorkNetManager]->_testClass = class;
+    [NCNetWorkNetManager shareNCNetWorkNetManager]->_testClass = _class;
 }
 + (void)openLog:(BOOL)open
 {
@@ -183,6 +184,7 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
     // 2.设置网络状态改变后的处理
     [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         // 当网络状态改变了, 就会调用这个block
+        [NCNetWorkNetManager shareNCNetWorkNetManager]->_netType = status;
         if (status >0) {
             if ([NCNetWorkNetManager shareNCNetWorkNetManager].netState != NetManageWaitReset) {
                 [NCNetWorkNetManager shareNCNetWorkNetManager]->_netState = NetManageActivce;
@@ -213,7 +215,7 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
             BOOL sendtNow = [[NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue pushQueue:send_struct];
             if(sendtNow)
             {
-                [[NCNetWorkNetManager shareNCNetWorkNetManager] connectUrl:send_struct];//开始请求 进入请求队列
+                [NCNetWorkNetManager connectUrl:send_struct];//开始请求 进入请求队列
             }else
             {
                 [[NCNetWorkNetManager shareNCNetWorkNetManager].waitQueue pushQueue:send_struct];//进入等待队列
@@ -236,7 +238,7 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
 
 #pragma mark ------ 发送请求 ------
 //异步
--(void)connectUrl:(BaseSendInfoGJM *)send_struct
++ (void)connectUrl:(BaseSendInfoGJM *)send_struct
 {
     NCNetConnData *pnet_data = [[NCNetConnData alloc]initWithBaseSendInfo:(BaseSendInfoGJM *)send_struct];
     [[NCNetWorkSendManager shareAFNManager] startConnect:pnet_data];//开始请求
@@ -244,12 +246,12 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
 
 #pragma mark ------ 请求结果 ------
 
-+(void)AFNCompleteProgress:(NCNetConnData *)connData progress:(NSProgress * )uploadProgress
++ (void)AFNCompleteProgress:(NCNetConnData *)connData progress:(NSProgress * )uploadProgress
 {
     if(connData.UploadProgress) (connData.UploadProgress)(uploadProgress);
 }
 
-+(void)AFNCompleteSuccess:(NCNetConnData *)connData responseObject:(id)responseObject
++ (void)AFNCompleteSuccess:(NCNetConnData *)connData responseObject:(id)responseObject
 {
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount = MAX(0,[NCNetWorkNetManager shareNCNetWorkNetManager].afnCount);
@@ -270,23 +272,36 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
         SEL testSel = NSSelectorFromString(NSStringFromClass(((BaseSendInfoGJM*)connData.send_wrap).class)) ;
         SuppressPerformSelectorLeakWarning(dic = [[NCNetWorkNetManager shareNCNetWorkNetManager].testClass performSelector:testSel withObject:dic]); //替换成测试数据
     }
-
-    id return_data = [connData.send_wrap return_unpack_wrap:dic];
-    if(return_data != nil)
-    {
-        connData.recv_wrap = return_data;
-        [return_data update_info:connData.send_wrap];
-        if(connData.OnSuccessFunc) (connData.OnSuccessFunc)(return_data);
+    if ([dic[@"code"] integerValue] == 401 || [dic[@"code"] integerValue] == 400 ) {
+        /*
+         条件判断，检测某些返回值的时候需要做的处理
+         */
+//        if ([AppDelegate getAppdelegate].isUpdateToken) {
+//            [[NCNetWorkNetManager shareNCNetWorkNetManager].waitQueue pushQueue:connData.send_wrap];//进入等待队列
+//        }else{
+//            [MiaoTalkStartSystem RequestTokenAndnextSendData:connData.send_wrap];//其他处理
+//        }
+        
     }else{
-        err = [[NSError alloc]initWithDomain:@"解析出错" code:-1000 userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:@"找不到回调",@"NSDebugDescription", nil]];
+        id return_data = [connData.send_wrap return_unpack_wrap:dic];
+        if(return_data != nil)
+        {
+            connData.recv_wrap = return_data;
+            [return_data update_info:connData.send_wrap];
+            if(connData.OnSuccessFunc) (connData.OnSuccessFunc)(return_data);
+        }else{
+            err = [[NSError alloc]initWithDomain:@"解析出错" code:-1000 userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:@"找不到回调",@"NSDebugDescription", nil]];
+            
+            [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
+            [NCNetWorkNetManager AFNCompleteFail:connData error:err];
+            return;
+        }
+        [[NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue popQueueObj:connData.send_wrap];
+        connData = nil;
+        [[NCNetWorkNetManager shareNCNetWorkNetManager] chickWaitQueue];
 
-        [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
-        [NCNetWorkNetManager AFNCompleteFail:connData error:err];
-        return;
     }
-    [[NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue popQueueObj:connData.send_wrap];
-    connData = nil;
-    [[NCNetWorkNetManager shareNCNetWorkNetManager] chickWaitQueue];
+
 }
 +(void)AFNCompleteFail:(NCNetConnData *)connData error:(NSError *)error
 {
@@ -305,13 +320,20 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
 
 - (BOOL)chickWaitQueue
 {
+    /*
+     自定义的特殊况（自己制定），暂停继续发送请求
+     */
+//    if ([AppDelegate getAppdelegate].isUpdateToken) {
+//        return false;
+//    }
+    
     if (self.waitQueue.queueCount > 0) {
         if (![NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue.queueFill) {
             id sendObj = [self.waitQueue popQueue];//移出队列
             NSLog(@"\n --- 从等待队列拿出 %@ --------\n 进行请求",[sendObj debugDescription]);
             BOOL sendtNow = [[NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue pushQueue:sendObj];
             if (sendtNow) {
-                [[NCNetWorkNetManager shareNCNetWorkNetManager] connectUrl:sendObj];//开始请求
+                [NCNetWorkNetManager connectUrl:sendObj];//开始请求
             }
         }
         return false;

@@ -18,7 +18,6 @@
 
 @interface UpdateServer : PostSend//继承相应的请求类型
 @property(nonatomic,assign) NSInteger age;
-@property(nonatomic,strong) NSString *name;
 
 @end
 @interface Re_UpdateServer : RecvStruct
