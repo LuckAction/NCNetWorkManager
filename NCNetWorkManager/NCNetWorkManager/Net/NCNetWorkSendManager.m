@@ -149,29 +149,11 @@ static NCNetWorkSendManager * shareAFNManager = nil;
     __block NSError *err = nil;
     __block NSData *received;
     //第三步，连接服务器
-//    if (IOSSystemVersion9) {
-//        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); //创建信号量
-//        //3.构造Session
-//        NSURLSession *session = [NSURLSession sharedSession];
-//        
-//        //4.task
-//        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-//            NSLog(@"dict:%@",dict);
-//            received = data;
-//            err = error;
-//            dispatch_semaphore_signal(semaphore);   //发送信号
-//        }];
-//        
-//        [task resume];
-//        dispatch_semaphore_wait(semaphore,DISPATCH_TIME_FOREVER);  //等待
-//        NSLog(@"数据加载完成！");
-//    }else{
-        received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
-//    }
+    received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
     if (err) {
         *error = err;
+        [NCNetWorkNetManager addError:err.userInfo postNsme:pnet_data.url.absoluteString];
     }
     return [self upData:pnet_data responseObject:received error:error];
 }

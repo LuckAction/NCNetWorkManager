@@ -103,6 +103,31 @@
 
 @implementation RecvStruct
 
+
+#define PARING()\
+{\
+NSMutableDictionary *properDic = [self getAllPropertiesAndValue];\
+for (NSString *key in [properDic allKeys]) {\
+    Class objclass = NSClassFromString([properDic objectForKey:key]);\
+    if ([objclass isSubclassOfClass:[NCNetModel class]]) {\
+        WRAP_UNPACK_DIC(key, objclass)\
+    }else if((objclass == [NSArray class]) || (objclass == [NSMutableArray class]) ){\
+        NSMutableArray *modelArray = [self valueForKey:key];\
+        if (modelArray.childClass) {\
+            WRAP_UNPACK_NCARRAY(key,modelArray.childClass)\
+        }else{\
+            WRAP_UNPACK_ARRAY(key, objclass)\
+        }\
+    }else if((objclass == [NSDictionary class]) || (objclass == [NSMutableDictionary class])){\
+        [self setValue:dic[key] forKey:key];\
+    }else {\
+        if (dic[key]) {\
+            [self setValue:dic[key] forKey:key];\
+        }\
+    }\
+}\
+}
+
 +(instancetype)wrap_unpack:(NSDictionary *)dic{ return nil; }
 -(BOOL)unpack_nsdic:(NSDictionary *)dic{
     if(dic == nil || dic.count == 0) return false;
@@ -114,26 +139,7 @@
 
 - (void)paring:(NSDictionary *)dic
 {
-    NSMutableDictionary *properDic = [self getAllPropertiesAndValue];
-    for (NSString *key in [properDic allKeys]) {
-        Class objclass = NSClassFromString([properDic objectForKey:key]);
-        if ([objclass isSubclassOfClass:[NCNetModel class]]) {
-            WRAP_UNPACK_DIC(key, objclass)
-        }else if((objclass == [NSArray class]) || (objclass == [NSMutableArray class]) ){
-            NSMutableArray *modelArray = [self valueForKey:key];
-            if (modelArray.childClass) {
-                WRAP_UNPACK_NCARRAY(key,modelArray.childClass)
-            }else{
-                WRAP_UNPACK_ARRAY(key, objclass)
-            }
-        }else if((objclass == [NSDictionary class]) || (objclass == [NSMutableDictionary class])){
-            [self setValue:dic[key] forKey:key];
-        }else {
-            if (dic[key]) {
-                [self setValue:dic[key] forKey:key];
-            }
-        }
-    }
+    PARING()
     /*特殊情况的处理*/
     if (self.code == 401 | self.code == 400) {
     }else if (self.code == 1001){
@@ -142,3 +148,12 @@
 
 @end
 
+
+@implementation ErrorLogUpdate
+
+RETURN_MODEL(Re_ErrorLogUpdate)
+@end
+
+@implementation Re_ErrorLogUpdate
+RETURN_MODEL_FUNC(Re_ErrorLogUpdate)
+@end

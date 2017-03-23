@@ -36,6 +36,8 @@
 		C350C6421E05223900537300 /* NCNetCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6411E05223900537300 /* NCNetCollection.m */; };
 		C350C6451E05225400537300 /* NCNetDataCollect.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6441E05225400537300 /* NCNetDataCollect.m */; };
 		C350C6481E0533C000537300 /* NCNetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = C350C6471E0533C000537300 /* NCNetTest.m */; };
+		C36C3BE91E83C6580011B8B7 /* NCLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C36C3BE81E83C6580011B8B7 /* NCLogManager.m */; };
+		C36C3BEB1E83CC660011B8B7 /* log.plist in Resources */ = {isa = PBXBuildFile; fileRef = C36C3BEA1E83CC660011B8B7 /* log.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,9 @@
 		C350C6441E05225400537300 /* NCNetDataCollect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetDataCollect.m; sourceTree = "<group>"; };
 		C350C6461E0533C000537300 /* NCNetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetTest.h; sourceTree = "<group>"; };
 		C350C6471E0533C000537300 /* NCNetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetTest.m; sourceTree = "<group>"; };
+		C36C3BE71E83C6580011B8B7 /* NCLogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLogManager.h; sourceTree = "<group>"; };
+		C36C3BE81E83C6580011B8B7 /* NCLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLogManager.m; sourceTree = "<group>"; };
+		C36C3BEA1E83CC660011B8B7 /* log.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = log.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +185,7 @@
 		C30A14481E5EE6C500E46F2B /* ModelData */ = {
 			isa = PBXGroup;
 			children = (
+				C36C3BE61E83C63F0011B8B7 /* NCLogManager */,
 				C30A14491E5EE6C500E46F2B /* DataModel */,
 				C30A144C1E5EE6C500E46F2B /* DataStructure */,
 			);
@@ -276,6 +282,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C36C3BE61E83C63F0011B8B7 /* NCLogManager */ = {
+			isa = PBXGroup;
+			children = (
+				C36C3BE71E83C6580011B8B7 /* NCLogManager.h */,
+				C36C3BE81E83C6580011B8B7 /* NCLogManager.m */,
+				C36C3BEA1E83CC660011B8B7 /* log.plist */,
+			);
+			path = NCLogManager;
+			sourceTree = "<group>";
+		};
 		D4F55838ACACC92AB02B68F9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C350C5C01E0510FE00537300 /* LaunchScreen.storyboard in Resources */,
+				C36C3BEB1E83CC660011B8B7 /* log.plist in Resources */,
 				C350C5BD1E0510FE00537300 /* Assets.xcassets in Resources */,
 				C350C5BB1E0510FE00537300 /* Main.storyboard in Resources */,
 			);
@@ -437,6 +454,7 @@
 				C30A14671E5EE6C500E46F2B /* NSObject+MJKeyValue.m in Sources */,
 				C30A14651E5EE6C500E46F2B /* NSObject+MJClass.m in Sources */,
 				C30A146F1E5EE6C500E46F2B /* NCNetWorkSendManager.m in Sources */,
+				C36C3BE91E83C6580011B8B7 /* NCLogManager.m in Sources */,
 				C30A146B1E5EE6C500E46F2B /* DictionaryQueue.m in Sources */,
 				C350C6481E0533C000537300 /* NCNetTest.m in Sources */,
 				C30A146D1E5EE6C500E46F2B /* StackObj.m in Sources */,

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "QueueObj.h"
 #import "DictionaryQueue.h"
+#import "NCLogManager.h"
 
 #define MAXREQUESTCOUNT 10
 #define MAXWAITCOUNT    10
@@ -41,7 +42,7 @@ typedef enum : NSUInteger
 @property(nonatomic,strong) NSString *content_type; //内容
 @property(nonatomic,strong) NSString *file_name; //来源文件名
 @property(nonatomic,strong) NSData *content_data; //内容
--(NSData *)out_data;
+//-(NSData *)out_data;
 
 @end
 
@@ -77,6 +78,7 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 
 @interface NCNetWorkNetManager : NSObject
 @property (nonatomic,readonly) DictionaryQueue *requestQueue;
+@property (nonatomic,readonly) NCLogManager *logManager;
 @property (nonatomic,readonly) QueueObj *waitQueue;
 @property (nonatomic,assign)   NSInteger afnCount; //当前连接数
 @property (nonatomic,readonly) NetManageState netState;
@@ -84,11 +86,17 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 @property (nonatomic,assign,readonly) BOOL openTest;
 @property (nonatomic,assign,readonly) BOOL openLogin;
 @property (nonatomic,assign,readonly) Class testClass;
+@property (strong,nonatomic,readonly) NSString *url;
+@property (assign,nonatomic,readonly) NSInteger total;
+
 
 - (instancetype)init;
 + (NCNetWorkNetManager*)shareNCNetWorkNetManager;
 + (void)openWrapTest:(BOOL)open testClass:(Class)_class;
 + (void)openLog:(BOOL)open;
++ (void)setErrorLog:(NSString*)url maxTotal:(NSInteger)total;
+
+
 NS_ASSUME_NONNULL_BEGIN
 +(void)connectUrl:(BaseSendInfoGJM *)send_struct;
 +(id)connectSyncUrl:(BaseSendInfoGJM *)send_struct error:(NSError**)error;
@@ -99,5 +107,6 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)AFNCompleteProgress:(NCNetConnData *)connData progress:(NSProgress * )uploadProgress;
 +(void)AFNCompleteFail:(NCNetConnData *)connData error:(NSError * )error;
 
++ (void)addError:(NSDictionary*)dic postNsme:(NSString*)url;
 NS_ASSUME_NONNULL_END
 @end

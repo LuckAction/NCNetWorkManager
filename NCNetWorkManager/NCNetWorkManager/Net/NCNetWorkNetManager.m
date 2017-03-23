@@ -11,17 +11,22 @@
 #import "NCNetWorkWrapStruct.h"
 #import "NCNetWorkSendManager.h"
 
-@implementation NCNetMediaCakeData
+#define OUTDATA(dataObj)\
+({\
+NSString *pcontent_string = [NSString stringWithFormat:@"Content-Disposition: from-data; name=%@; filename=%@\r\nContent-Type: %@\r\n\r\n",dataObj.name_key,dataObj.file_name,dataObj.content_type];\
+NSMutableData *pout_data = [NSMutableData data];\
+[pout_data appendData:[pcontent_string dataUsingEncoding:NSUTF8StringEncoding]];\
+[pout_data appendData:dataObj.content_data];\
+(pout_data);\
+})
 
+@implementation NCNetMediaCakeData
+/*
 -(NSData *)out_data
 {
-    NSString *pcontent_string = [NSString stringWithFormat:@"Content-Disposition: from-data; name=%@; filename=%@\r\nContent-Type: %@\r\n\r\n",self.name_key,self.file_name,self.content_type];
-    NSMutableData *pout_data = [NSMutableData data];
-    [pout_data appendData:[pcontent_string dataUsingEncoding:NSUTF8StringEncoding]];
-    [pout_data appendData:self.content_data];
-    return pout_data;
+    return nil;
 }
-
+*/
 @end
 
 
@@ -50,12 +55,7 @@
     self = [self initInfo:info];
     if (self) {
         self.updata_data = [info pack_to_nsdata];
-        self.media_data = info.media_data;
-
-        if (info.mode != 0) {
-        }else{
-        }
-        
+        self.media_data = info.media_data;        
     }
     return self;
 }
@@ -84,7 +84,7 @@
 
     NSArray *keys = [dic allKeys];
     long space_rand = random();
-    NSData *pspace_str = [[NSString stringWithFormat:@"--Jf@WlKj$#*%lX",space_rand] dataUsingEncoding:NSUTF8StringEncoding]; //间隔符
+    NSData *pspace_str = [[NSString stringWithFormat:@"--Jf@WlKj$#*%lX",space_rand] dataUsingEncoding:NSUTF8StringEncoding];
     NSData *pspace_fu = [@"--" dataUsingEncoding:NSUTF8StringEncoding];
     NSData *return_char = [@"\r\n" dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -111,7 +111,7 @@
         [pns_data appendData:pspace_fu];
         [pns_data appendData:pspace_str];
         [pns_data appendData:return_char];
-        [pns_data appendData:[pnet_data out_data]];
+        [pns_data appendData:OUTDATA(pnet_data)];
     }
     
     //结束
@@ -136,8 +136,9 @@
 
 
 @implementation NCNetWorkNetManager
+
 static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
-@synthesize requestQueue = _requestQueue, waitQueue = _waitQueue;
+@synthesize requestQueue = _requestQueue, waitQueue = _waitQueue ,logManager = _logManager;
 
 +(NCNetWorkNetManager*)shareNCNetWorkNetManager;
 {
@@ -167,6 +168,15 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
     }
     return _waitQueue;
 }
+
+- (NCLogManager *)logManager
+{
+    if (_logManager == nil) {
+        _logManager = [[NCLogManager alloc]initWithUrl:[NCNetWorkNetManager shareNCNetWorkNetManager].url maxTotal:[NCNetWorkNetManager shareNCNetWorkNetManager].total];
+    }
+    return _logManager;
+}
+
 + (void)openWrapTest:(BOOL)open testClass:(Class)_class
 {
     [NCNetWorkNetManager shareNCNetWorkNetManager]->_openTest = open;
@@ -176,6 +186,13 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
 {
     [NCNetWorkNetManager shareNCNetWorkNetManager]->_openLogin = open;
 }
+
++ (void)setErrorLog:(NSString*)url maxTotal:(NSInteger)total
+{
+    [NCNetWorkNetManager shareNCNetWorkNetManager]->_url = url;
+    [NCNetWorkNetManager shareNCNetWorkNetManager]->_total = total;
+}
+
 #pragma mark ------ 网络监控 ------
 - (void)reachability
 {
@@ -290,7 +307,8 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
             [return_data update_info:connData.send_wrap];
             if(connData.OnSuccessFunc) (connData.OnSuccessFunc)(return_data);
         }else{
-            err = [[NSError alloc]initWithDomain:@"解析出错" code:-1000 userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:@"找不到回调",@"NSDebugDescription", nil]];
+            err = [[NSError alloc]initWithDomain:@"解析出错" code:-1000 userInfo:[[NSDictionary alloc]initWithObjectsAndKeys:@"找不到回调",@"NSLocalizedDescription", nil]];
+            [NCNetWorkNetManager addError:err.userInfo postNsme:connData.url.absoluteString];
             
             [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount++;
             [NCNetWorkNetManager AFNCompleteFail:connData error:err];
@@ -308,8 +326,9 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
     [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount = MAX(0,[NCNetWorkNetManager shareNCNetWorkNetManager].afnCount);
     if(connData.OnFailFunc) (connData.OnFailFunc)(error);
-    if (error.userInfo[@"NSDebugDescription"]) {
-        NSLog(@"%@",error.userInfo[@"NSDebugDescription"]);
+    if (error.userInfo[@"NSLocalizedDescription"]) {
+        NSLog(@"%@",error.userInfo[@"NSLocalizedDescription"]);
+        [NCNetWorkNetManager addError:error.userInfo postNsme:connData.url.absoluteString];
     }
     [[NCNetWorkNetManager shareNCNetWorkNetManager].requestQueue popQueueObj:connData.send_wrap];
     connData = nil;
@@ -342,6 +361,29 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
     }
 }
 
++ (void)addError:(NSDictionary*)dic postNsme:(NSString*)url
+{
+    NSMutableDictionary *errorDic = [[NSMutableDictionary alloc]init];
+    
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatDay = [[NSDateFormatter alloc] init];
+    formatDay.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    NSString *dayStr = [formatDay stringFromDate:now];
+    
+    NSString *str = dic[@"NSDebugDescription"];
+    if (!str) {
+        str = dic[@"NSLocalizedDescription"];
+    }
+    [errorDic setObject:dayStr forKey:@"time"];
+    [errorDic setObject:url forKey:@"url"];
+    if (str) {
+        [errorDic setObject:str forKey:@"reason"];
+    }else{
+        [errorDic setObject:dic forKey:@"reason"];
+    }
+    
+    [[NCNetWorkNetManager shareNCNetWorkNetManager].logManager addErrorLog:errorDic];
+}
 
 
 @end

@@ -11,5 +11,5 @@
 @interface NSObject (AssociatedObject)
 @property (assign, nonatomic,readonly) Class childClass;
 - (instancetype)initWithChildClass:(Class)childClass;
-
++ (instancetype)objChildClass:(Class)childClass;
 @end

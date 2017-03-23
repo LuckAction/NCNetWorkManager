@@ -96,8 +96,7 @@
 }
 - (BOOL)reverse
 {
-    NSArray *array = [[self.stackArray reverseObjectEnumerator] allObjects];
-    self.stackArray = [[NSMutableArray alloc]initWithArray:array];
+    self.stackArray = [[NSMutableArray alloc]initWithArray:[[self.stackArray reverseObjectEnumerator] allObjects]];
     return true;
 }
 @end

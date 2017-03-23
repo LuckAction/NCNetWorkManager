@@ -27,4 +27,9 @@
     return self;
 }
 
++ (instancetype)objChildClass:(Class)childClass
+{
+    return [[self.class alloc]initWithChildClass:childClass];
+}
+
 @end

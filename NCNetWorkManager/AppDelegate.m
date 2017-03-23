@@ -26,6 +26,8 @@
     [NCNetWorkNetManager openWrapTest:TRUE testClass:NCNetTest.class];
     //打开日志
     [NCNetWorkNetManager openLog:TRUE];
+    //设置错误日志的上报路径和上报条数
+    [NCNetWorkNetManager setErrorLog:@"http://urlv2.kewaimiao.com" maxTotal:20];
     
     // 启动系统风火轮
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

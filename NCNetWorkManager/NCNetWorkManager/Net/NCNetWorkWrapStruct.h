@@ -58,4 +58,11 @@
 
 @end
 
+@interface ErrorLogUpdate : PostSend//继承相应的请求类型
+@property(nonatomic,strong) NSMutableArray *errorArray;
+
+@end
+@interface Re_ErrorLogUpdate : RecvStruct
+@end
+
 

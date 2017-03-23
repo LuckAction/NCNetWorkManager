@@ -8,26 +8,41 @@
 
 #import "NSArray+AssociatedObject.h"
 
+#define ADDMODEL(obj)\
+{\
+id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:obj];\
+ADDMODELDATA(modelData)\
+}
+
+#define ADDMODELDATA(obj)\
+{\
+if (obj) [(NSMutableArray *)self addObject:obj];\
+}
+
+#define PASING(object,key)\
+{\
+if (self.childClass) {\
+id value = object[key];\
+for (id obj in value) {\
+if ([obj isKindOfClass:[NSArray class]] || [obj isKindOfClass:[NSMutableArray class]]) {\
+NSMutableArray *array = obj;\
+for (id childData in array) {\
+ADDMODEL(childData);\
+}\
+}else if([obj isKindOfClass:[NSDictionary class]]){\
+ADDMODEL(obj)\
+}else{\
+ADDMODELDATA(obj)\
+}\
+}\
+}\
+return self;\
+}
 @implementation NSArray (AssociatedObject)
 
+
 - (id)pasing:(id)object key:(NSString*)key{
-    if (self.childClass) {
-        id value = object[key];
-        for (id child in value) {
-            if ([child isKindOfClass:[NSArray class]] || [child isKindOfClass:[NSMutableArray class]]) {
-                NSMutableArray *array = child;
-                for (id childData in array) {
-                    id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:childData];
-                    if (modelData) [(NSMutableArray *)self addObject:modelData];
-                }
-            }else if([object isKindOfClass:[NSDictionary class]]){
-                id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:child];
-                if (modelData) [(NSMutableArray *)self addObject:modelData];
-            }else{
-                if (child) [(NSMutableArray *)self addObject:child];
-            }
-        }
-    }
-    return self;
+    PASING(object,key)
 }
+
 @end
