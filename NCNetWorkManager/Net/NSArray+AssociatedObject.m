@@ -7,7 +7,8 @@
 //
 
 #import "NSArray+AssociatedObject.h"
-
+#import <objc/runtime.h>
+#import "NCNetModel.h"
 #define ADDMODEL(obj)\
 {\
 id modelData = [NCNetModel nc_objectWithKeyValuesWith:self.childClass value:obj];\

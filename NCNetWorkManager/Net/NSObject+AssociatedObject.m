@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+AssociatedObject.h"
-
+#import <objc/runtime.h>
 @implementation NSObject (AssociatedObject)
 
 - (void)setChildClass:(Class)childClass

@@ -7,7 +7,8 @@
 //
 
 #import "NCLogManager.h"
-
+#import "NCNetWorkWrapStruct.h"
+#import "NCNetWorkNetManager.h"
 @interface NCLogManager ()
 @property (strong,nonatomic) NSString *url;
 @property (strong,nonatomic) NSString *logPath;

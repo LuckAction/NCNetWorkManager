@@ -9,6 +9,7 @@
 #import "MJPropertyKey.h"
 #import "MJExtension.h"
 #import "NCNetModel.h"
+#import "NSArray+AssociatedObject.h"
 #define GETMODELARRAY(shuxing)\
 {\
 modelArray = (NCNSMutableArray*)(father.shuxing);\

@@ -15,7 +15,7 @@
 #import "MJFoundation.h"
 #import "NSString+MJExtension.h"
 #import "NSObject+MJClass.h"
-
+#import "NSObject+AssociatedObject.h"
 @implementation NSObject (MJKeyValue)
 
 #pragma mark - 错误

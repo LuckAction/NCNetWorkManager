@@ -134,6 +134,11 @@ NSMutableData *pout_data = [NSMutableData data];\
 }
 @end
 
+@interface NCNetWorkNetManager()
+@property (nonatomic,readonly,assign) AFNetworkReachabilityStatus netType;
+
+@end
+
 
 @implementation NCNetWorkNetManager
 

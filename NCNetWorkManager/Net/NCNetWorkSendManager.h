@@ -6,7 +6,7 @@
 //  Copyright © 2016年 luck chen. All rights reserved.
 //
 #import "AFNetworking.h"
-
+#import "NCNetWorkNetManager.h"
 @interface NCNetWorkSendManager : AFHTTPSessionManager
 + (NCNetWorkSendManager*)shareAFNManager;
 //同步请求

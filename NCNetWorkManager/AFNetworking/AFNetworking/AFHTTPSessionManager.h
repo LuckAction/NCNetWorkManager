@@ -1,5 +1,5 @@
 // AFHTTPSessionManager.h
-// Copyright (c) 2011–2016 Alamofire Software Foundation ( http://alamofire.org/ )
+// Copyright (c) 2011–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -158,7 +158,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                             parameters:(nullable id)parameters
-                              progress:(nullable void (^)(NSProgress *downloadProgress))downloadProgress
+                              progress:(nullable void (^)(NSProgress *downloadProgress)) downloadProgress
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
@@ -205,7 +205,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                              parameters:(nullable id)parameters
-                               progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
+                               progress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 
@@ -241,7 +241,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                              parameters:(nullable id)parameters
               constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
-                               progress:(nullable void (^)(NSProgress *uploadProgress))uploadProgress
+                               progress:(nullable void (^)(NSProgress *uploadProgress)) uploadProgress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
 

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constant.h"
+#import "NCNetModel.h"
 
 @interface BaseSendInfoGJM : NCNetModel
 @property (assign,nonatomic,readonly) NSInteger mode;

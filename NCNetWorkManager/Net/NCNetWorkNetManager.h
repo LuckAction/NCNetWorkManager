@@ -45,6 +45,7 @@ typedef enum : NSUInteger
 //-(NSData *)out_data;
 
 @end
+#import "NCNetWorkWrapStruct.h"
 
 @interface NCNetConnData : NSObject
 @property (nonatomic,strong) NSURL *url; //网路地址
@@ -82,7 +83,6 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 @property (nonatomic,readonly) QueueObj *waitQueue;
 @property (nonatomic,assign)   NSInteger afnCount; //当前连接数
 @property (nonatomic,readonly) NetManageState netState;
-@property (nonatomic,readonly,assign) AFNetworkReachabilityStatus netType;
 @property (nonatomic,assign,readonly) BOOL openTest;
 @property (nonatomic,assign,readonly) BOOL openLogin;
 @property (nonatomic,assign,readonly) Class testClass;

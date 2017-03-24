@@ -13,9 +13,9 @@
 {
     self = [super init];
     if (self) {
-        SuppressPerformSelectorLeakWarning(
-                                           class_addMethod(self.class, NSSelectorFromString(@"method:::"), (IMP)myAddingFunction, "i@:i@:i@");//新增方法
-        );
+//        SuppressPerformSelectorLeakWarning(
+                                           class_addMethod(self.class, NSSelectorFromString(@"method:::"), (IMP)myAddingFunction, "i@:i@:i@");
+//        );//新增方法
         class_replaceMethod(self.class, @selector(setpeopelName:age:sex:), (IMP)myAddingFunction, "i@:i@:i@");//替换方法
     }
     return self;

@@ -1,7 +1,8 @@
 
 #import "NCNetWorkWrapStruct.h"
 #import "MJExtension.h"
-
+#import "NCNetWorkNetManager.h"
+#import "NSArray+AssociatedObject.h"
 
 @implementation BaseSendInfoGJM
 @synthesize mode = _mode,parameterStr = _parameterStr;
