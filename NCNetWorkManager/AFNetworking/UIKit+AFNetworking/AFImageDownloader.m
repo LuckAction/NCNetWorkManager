@@ -93,13 +93,13 @@
 
 @interface AFImageDownloader ()
 
-#if OS_OBJECT_USE_OBJC
-@property (nonatomic, strong) dispatch_queue_t synchronizationQueue;
-@property (nonatomic, strong) dispatch_queue_t responseQueue;
-#else
+//#if OS_OBJECT_USE_OBJC
+//@property (nonatomic, strong) dispatch_queue_t synchronizationQueue;
+//@property (nonatomic, strong) dispatch_queue_t responseQueue;
+//#else
 @property (nonatomic, assign) dispatch_queue_t synchronizationQueue;
 @property (nonatomic, assign) dispatch_queue_t responseQueue;
-#endif
+//#endif
 
 
 @property (nonatomic, assign) NSInteger maximumActiveDownloads;

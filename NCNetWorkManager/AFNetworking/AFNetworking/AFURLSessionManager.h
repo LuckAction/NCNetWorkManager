@@ -154,18 +154,18 @@ NS_ASSUME_NONNULL_BEGIN
 ///-------------------------------
 
 
-#if OS_OBJECT_USE_OBJC
-/**
- The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
- */
-@property (nonatomic, strong, nullable) dispatch_queue_t completionQueue;
-
-/**
- The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
- */
-@property (nonatomic, strong, nullable) dispatch_group_t completionGroup;
-
-#else
+//#if OS_OBJECT_USE_OBJC
+///**
+// The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
+// */
+//@property (nonatomic, strong, nullable) dispatch_queue_t completionQueue;
+//
+///**
+// The dispatch group for `completionBlock`. If `NULL` (default), a private dispatch group is used.
+// */
+//@property (nonatomic, strong, nullable) dispatch_group_t completionGroup;
+//
+//#else
 /**
  The dispatch queue for `completionBlock`. If `NULL` (default), the main queue is used.
  */
@@ -176,7 +176,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, nullable) dispatch_group_t completionGroup;
 
-#endif
+//#endif
 ///---------------------------------
 /// @name Working Around System Bugs
 ///---------------------------------
