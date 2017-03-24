@@ -7,6 +7,7 @@
 //
 
 #import "NCNetDataCollect.h"
+#import "NSArray+AssociatedObject.h"
 
 @implementation NCNetDataCollect
 
