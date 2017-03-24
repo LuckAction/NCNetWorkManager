@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "NCNetWorkManager"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "网络请求管理和数据自动封装解析"
 
   # This description is used to generate tags and improve search results.
