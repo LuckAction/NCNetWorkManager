@@ -12,7 +12,7 @@
 @implementation NCNetDataCollect
 
 @end
-
+/*
 @implementation NCNetWorkData
 +(NCNetWorkData *)shareNCNetWorkData
 {
@@ -73,3 +73,4 @@
 }
 
 @end
+*/

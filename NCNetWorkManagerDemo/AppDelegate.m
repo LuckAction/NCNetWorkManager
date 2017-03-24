@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "NCNetCollection.h"
-#import "NCNetWorkNetManager.h"
-#import "NCNetDataCollect.h"
+//#import "NCNetCollection.h"
+//#import "NCNetWorkNetManager.h"
+//#import "NCNetDataCollect.h"
 
 #define XcodeAppBundle [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 #define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    
+    /*
     //打开测试模式，默认为关闭，传入测试案例的类
     [NCNetWorkNetManager openWrapTest:TRUE testClass:NCNetTest.class];
     //打开日志
@@ -60,7 +60,7 @@
     } onfail:^(NSError * _Nonnull result) {
         NSLog(@"%@",result);
     }];
-    
+    */
 
     // Override point for customization after application launch.
     return YES;

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NCNetDataCollect.h"
-#import "NCNetTest.h"
-#import "NCNetWorkWrapStruct.h"
+//#import "NCNetDataCollect.h"
+//#import "NCNetTest.h"
+//#import "NCNetWorkWrapStruct.h"
 @interface NCNetCollection : NSObject
 
 @end
-
+/*
 #pragma mark --- UpdateServer ---
 
 @interface UpdateServer : PostSend//继承相应的请求类型
@@ -29,3 +29,4 @@
 
 @end
 
+*/

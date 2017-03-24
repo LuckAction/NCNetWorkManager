@@ -18,7 +18,7 @@
 /*
  NCNetWorkData
  全局数据管理类
- */
+
 @interface NCNetWorkData : NSObject
 @property(nonatomic,strong) UserData *userData;
 @property(nonatomic,readonly) ServerModel *server;
@@ -47,7 +47,6 @@
 /*
  People
  基础的人物结构
- */
 @interface People : NCNetModel
 @property(nonatomic,assign) NSInteger customer_id;
 @property (nonatomic,strong) NSString* name;
@@ -57,7 +56,6 @@
 /*
  UserData
  用户结构
- */
 @interface UserData : People
 @property (nonatomic,strong) NSMutableArray* userList;
 @property (nonatomic,strong) UserData *child;
@@ -67,10 +65,11 @@
 /*
  Car
  汽车结构
- */
+
 @interface Car : NCNetModel
 @property (nonatomic,strong) NSString* name;
 @property (nonatomic,strong) NSString* color;
 @property (nonatomic,strong) NSMutableArray* userList;//汽车的使用者列表People
 
 @end
+ */
