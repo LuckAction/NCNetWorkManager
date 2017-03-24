@@ -67,11 +67,11 @@
 @interface AFAutoPurgingImageCache ()
 @property (nonatomic, strong) NSMutableDictionary <NSString* , AFCachedImage*> *cachedImages;
 @property (nonatomic, assign) UInt64 currentMemoryUsage;
-//#if OS_OBJECT_USE_OBJC
-//@property (nonatomic, strong) dispatch_queue_t synchronizationQueue;
-//#else
+#if OS_OBJECT_USE_OBJC
+@property (nonatomic, strong) dispatch_queue_t synchronizationQueue;
+#else
 @property (nonatomic, assign) dispatch_queue_t synchronizationQueue;
-//#endif
+#endif
 @end
 
 @implementation AFAutoPurgingImageCache

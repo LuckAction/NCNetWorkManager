@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "NCNetCollection.h"
 #import "NCNetWorkNetManager.h"
+#import "NCNetDataCollect.h"
+
 #define XcodeAppBundle [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 #define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
@@ -17,7 +19,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -28,7 +29,7 @@
     [NCNetWorkNetManager openLog:TRUE];
     //设置错误日志的上报路径和上报条数
     [NCNetWorkNetManager setErrorLog:@"http://urlv2.kewaimiao.com" maxTotal:20];
-    
+
     // 启动系统风火轮
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //同步请求测试用例
