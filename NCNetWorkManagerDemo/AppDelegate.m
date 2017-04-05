@@ -57,7 +57,7 @@
         NSLog(@"请求进度 ------ %@",progress);
     } OnSuccess:^(Re_UpdateServer*  _Nonnull result) {
         NSLog(@"%@",result);
-    } onfail:^(NSError * _Nonnull result) {
+    } onfail:^(NSError * _Nonnull result) {a
         NSLog(@"%@",result);
     }];
     */
