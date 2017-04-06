@@ -30,12 +30,12 @@
 
 #pragma mark -ServerModel
 @interface ServerModel: NCNetModel
-@property (nonatomic,strong) NSString* api_host;
-@property (nonatomic,strong) NSString* img_host;
-@property (nonatomic,strong) NSString* upgrade_link;
-@property (nonatomic,strong) NSString* maintenance_message;
+@property (nonatomic,copy) NSString* api_host;
+@property (nonatomic,copy) NSString* img_host;
+@property (nonatomic,copy) NSString* upgrade_link;
+@property (nonatomic,copy) NSString* maintenance_message;
 @property (nonatomic,assign) NSInteger maintenance_mode;
-@property (nonatomic,strong) NSString* upgrade_message;
+@property (nonatomic,copy) NSString* upgrade_message;
 @property (nonatomic,assign) BOOL isShowQuestionAnswer;
 @property (nonatomic,strong) People *user;
 @property (nonatomic,strong) NSMutableArray* userList;
@@ -49,8 +49,8 @@
  基础的人物结构
 @interface People : NCNetModel
 @property(nonatomic,assign) NSInteger customer_id;
-@property (nonatomic,strong) NSString* name;
-@property (nonatomic,strong) NSString* sex;
+@property (nonatomic,copy) NSString* name;
+@property (nonatomic,copy) NSString* sex;
 
 @end
 /*
@@ -67,8 +67,8 @@
  汽车结构
 
 @interface Car : NCNetModel
-@property (nonatomic,strong) NSString* name;
-@property (nonatomic,strong) NSString* color;
+@property (nonatomic,copy) NSString* name;
+@property (nonatomic,copy) NSString* color;
 @property (nonatomic,strong) NSMutableArray* userList;//汽车的使用者列表People
 
 @end

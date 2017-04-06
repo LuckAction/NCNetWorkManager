@@ -13,7 +13,7 @@
 @interface NCNetCollection : NSObject
 
 @end
-/*
+
 #pragma mark --- UpdateServer ---
 
 @interface UpdateServer : PostSend//继承相应的请求类型
@@ -21,12 +21,12 @@
 
 @end
 @interface Re_UpdateServer : RecvStruct
-@property(nonatomic,assign) BOOL sex;
-@property(nonatomic,assign) NSInteger age;
-@property(nonatomic,strong) NSString *name;
-@property(nonatomic,strong) ServerModel *data;
-@property(nonatomic,strong) NSMutableArray *userList;
+//@property(nonatomic,assign) BOOL sex;
+//@property(nonatomic,assign) NSInteger age;
+//@property(nonatomic,strong) NSString *name;
+//@property(nonatomic,strong) ServerModel *data;
+//@property(nonatomic,strong) NSMutableArray *userList;
 
 @end
 
-*/
+

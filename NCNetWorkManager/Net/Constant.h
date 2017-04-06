@@ -72,7 +72,7 @@ NCNetModel *model = [self valueForKey:value];\
 }\
 }
 
-#define URL(string) [NSURL URLWithString:string]
+#define URL(string) [NSURL URLWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]
 
 #if _DEBUG_LOCAL_RETURN_
 #define LOCAL_RETURN_TEST(value) \

@@ -38,9 +38,9 @@ typedef enum : NSUInteger
 
 @interface NCNetMediaCakeData : NSObject
 
-@property(nonatomic,strong) NSString *name_key; //键值
-@property(nonatomic,strong) NSString *content_type; //内容
-@property(nonatomic,strong) NSString *file_name; //来源文件名
+@property(nonatomic,copy) NSString *name_key; //键值
+@property(nonatomic,copy) NSString *content_type; //内容
+@property(nonatomic,copy) NSString *file_name; //来源文件名
 @property(nonatomic,strong) NSData *content_data; //内容
 //-(NSData *)out_data;
 
@@ -50,7 +50,7 @@ typedef enum : NSUInteger
 @interface NCNetConnData : NSObject
 @property (nonatomic,strong) NSURL *url; //网路地址
 @property (nonatomic,assign) BOOL isNeedStore_id; //是否需要站点
-@property (nonatomic,strong) NSString *Content_Type;
+@property (nonatomic,copy) NSString *Content_Type;
 @property (nonatomic,assign) unsigned level; //优先级(0,最高)
 @property (nonatomic,assign) uint64_t task_time; //任务时间
 @property (nonatomic,assign) unsigned over_time; //超时时间
@@ -64,7 +64,7 @@ typedef enum : NSUInteger
 @property (nonatomic,strong) NSMutableArray *media_data; //媒体数据
 @property (nonatomic,strong) NSMutableData *download_data; //下载数据
 @property (nonatomic,assign) HootMode http_mode; //http mode
-@property (nonatomic,strong) NSDictionary* resultsDic; //结果
+@property (nonatomic,copy) NSDictionary* resultsDic; //结果
 
 - (instancetype)initWithBaseSendInfo:(BaseSendInfoGJM*)info;
 - (instancetype)initWithSynchronousBaseSendInfo:(BaseSendInfoGJM*)info;
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 @property (nonatomic,assign,readonly) BOOL openTest;
 @property (nonatomic,assign,readonly) BOOL openLogin;
 @property (nonatomic,assign,readonly) Class testClass;
-@property (strong,nonatomic,readonly) NSString *url;
+@property (copy,nonatomic,readonly) NSString *url;
 @property (assign,nonatomic,readonly) NSInteger total;
 
 

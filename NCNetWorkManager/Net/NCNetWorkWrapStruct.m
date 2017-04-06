@@ -30,8 +30,8 @@
 -(NSURL *)connect_url
 {
     if ([NCNetWorkNetManager shareNCNetWorkNetManager].openLogin) NSLog(@"%@",self.url);
-
-    return URL(self.url);//传进来的url
+    NSURL *url = URL(self.url);
+    return url;//传进来的url
 }
 - (NSString *)parameterStr
 {
@@ -120,7 +120,9 @@ for (NSString *key in [properDic allKeys]) {\
             WRAP_UNPACK_ARRAY(key, objclass)\
         }\
     }else if((objclass == [NSDictionary class]) || (objclass == [NSMutableDictionary class])){\
-        [self setValue:dic[key] forKey:key];\
+        if (dic[key]) {\
+            [self setValue:dic[key] forKey:key];\
+        }\
     }else {\
         if (dic[key]) {\
             [self setValue:dic[key] forKey:key];\

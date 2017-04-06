@@ -12,9 +12,9 @@
 
 @interface BaseSendInfoGJM : NCNetModel
 @property (assign,nonatomic,readonly) NSInteger mode;
-@property (strong,nonatomic,readonly) NSString *parameterStr;
-@property (strong,nonatomic) NSString *url;
-@property (strong,nonatomic) NSMutableArray *media_data;
+@property (copy,nonatomic,readonly) NSString *parameterStr;
+@property (copy,nonatomic) NSString *url;
+@property (copy,nonatomic) NSMutableArray *media_data;
 @property (nonatomic, assign) BOOL isSynchronous; // 是否用同步方式发送请求
 @property (nonatomic,strong) void (^OnSuccessFunc)(id result);
 @property (nonatomic,strong) void (^OnFailFunc)(NSError *);
@@ -50,8 +50,8 @@
 @interface RecvStruct : NCNetModel
 @property (nonatomic, assign) BOOL success;
 @property (nonatomic, assign) NSInteger code;
-@property (strong,nonatomic) NSString *msg;
-@property (strong,nonatomic) NSString *error;
+@property (copy,nonatomic) NSString *msg;
+@property (copy,nonatomic) NSString *error;
 +(instancetype)wrap_unpack:(NSDictionary *)dic;
 -(BOOL)unpack_nsdic:(NSDictionary *)dic;
 -(void)update_info:(id)send_struct;

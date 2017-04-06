@@ -7,9 +7,9 @@
 //
 
 #import "AppDelegate.h"
-//#import "NCNetCollection.h"
-//#import "NCNetWorkNetManager.h"
-//#import "NCNetDataCollect.h"
+#import "NCNetCollection.h"
+#import "NCNetWorkNetManager.h"
+#import "NCNetDataCollect.h"
 
 #define XcodeAppBundle [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"]
 #define XcodeAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
@@ -22,9 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    /*
     //打开测试模式，默认为关闭，传入测试案例的类
-    [NCNetWorkNetManager openWrapTest:TRUE testClass:NCNetTest.class];
+//    [NCNetWorkNetManager openWrapTest:TRUE testClass:NCNetTest.class];
     //打开日志
     [NCNetWorkNetManager openLog:TRUE];
     //设置错误日志的上报路径和上报条数
@@ -34,7 +33,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //同步请求测试用例
     UpdateServer *update = [[UpdateServer alloc]init];
-    update.url = @"http://urlv2.kewaimiao.com?appid=com.kewaimiao.iosapp&version=3.0.312";
+    update.url = @"http://baike.baidu.com/item/三七/648675?sefr=cr";
     update.age = 18;
     NSString *name;
     name = [update setpeopelName:@"chenhenian" age:@"26" sex:@"1"];
@@ -57,10 +56,9 @@
         NSLog(@"请求进度 ------ %@",progress);
     } OnSuccess:^(Re_UpdateServer*  _Nonnull result) {
         NSLog(@"%@",result);
-    } onfail:^(NSError * _Nonnull result) {a
+    } onfail:^(NSError * _Nonnull result) {
         NSLog(@"%@",result);
     }];
-    */
 
     // Override point for customization after application launch.
     return YES;

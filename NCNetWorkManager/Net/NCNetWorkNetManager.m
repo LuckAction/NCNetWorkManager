@@ -380,7 +380,9 @@ static NCNetWorkNetManager *shareNCNetWorkNetManager = nil;
         str = dic[@"NSLocalizedDescription"];
     }
     [errorDic setObject:dayStr forKey:@"time"];
-    [errorDic setObject:url forKey:@"url"];
+    if (url){
+        [errorDic setObject:url forKey:@"url"];
+    }
     if (str) {
         [errorDic setObject:str forKey:@"reason"];
     }else{
