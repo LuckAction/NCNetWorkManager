@@ -1,4 +1,4 @@
-//
+ //
 //  GuanjiaMiaoAFHManager.m
 //  MiaowStudentPro
 //
@@ -146,15 +146,34 @@ static NCNetWorkSendManager * shareAFNManager = nil;
     [request setHTTPMethod:[self getSyncMode:pnet_data.http_mode]];//设置请求方式，默认为GET
     [request setHTTPBody:pnet_data.updata_data];
     
-    __block NSError *err = nil;
+    __block dispatch_semaphore_t semaphore = dispatch_semaphore_create(0); //创建信号量
+    //
+    NSURLSession *session = [NSURLSession sharedSession];
     __block NSData *received;
-    //第三步，连接服务器
-    received = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&err];
-    [NCNetWorkNetManager shareNCNetWorkNetManager].afnCount--;
+    __block NSError *err = nil;
+
+    /**
+     参数一:请求对象
+     参数二:block块
+     data :响应体
+     response:响应头
+     error :错误信息
+     */
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable erro) {
+        received = data;
+        err = erro;
+        dispatch_semaphore_signal(semaphore);   //发送信号
+    }];
+    
+    [dataTask resume];
+    dispatch_semaphore_wait(semaphore,DISPATCH_TIME_FOREVER);  //等待
     if (err) {
         *error = err;
         [NCNetWorkNetManager addError:err.userInfo postNsme:pnet_data.url.absoluteString];
     }
+
+    NSLog(@"数据加载完成！");
+    
     return [self upData:pnet_data responseObject:received error:error];
 }
 

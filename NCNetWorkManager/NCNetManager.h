@@ -15,5 +15,5 @@
 #import "NCNetWorkWrapStruct.h"
 #import "NCNetWorkNetManager.h"
 #import "NSArray+AssociatedObject.h"
-
+#import "NCNetWorkDownloadManager.h"
 #endif /* NCNetManager_h */

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "NCNetDataCollect.h"
-//#import "NCNetTest.h"
-//#import "NCNetWorkWrapStruct.h"
+#import "NCNetDataCollect.h"
+#import "NCNetTest.h"
+#import "NCNetWorkWrapStruct.h"
 @interface NCNetCollection : NSObject
 
 @end
@@ -21,11 +21,11 @@
 
 @end
 @interface Re_UpdateServer : RecvStruct
-//@property(nonatomic,assign) BOOL sex;
-//@property(nonatomic,assign) NSInteger age;
-//@property(nonatomic,strong) NSString *name;
-//@property(nonatomic,strong) ServerModel *data;
-//@property(nonatomic,strong) NSMutableArray *userList;
+@property(nonatomic,assign) BOOL sex;
+@property(nonatomic,assign) NSInteger age;
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) ServerModel *data;
+@property(nonatomic,strong) NSMutableArray *userList;
 
 @end
 

@@ -98,15 +98,20 @@ typedef NS_ENUM(NSInteger,NetManageState) {
 
 
 NS_ASSUME_NONNULL_BEGIN
-+(void)connectUrl:(BaseSendInfoGJM *)send_struct;
-+(id)connectSyncUrl:(BaseSendInfoGJM *)send_struct error:(NSError**)error;
-+(void)connectUrl:(BaseSendInfoGJM *)send_struct OnSuccess:(void (^)(id result))Onsuccess onfail:(void (^)(NSError *result))Onfail;
-+(void)connectUrl:(BaseSendInfoGJM *)send_struct progress:(nullable void (^)(NSProgress *   progress))uploadProgress OnSuccess:(void (^  )(id   result))Onsuccess onfail:(void (^  )(NSError *   result))Onfail;
++ (void)connectUrl:(BaseSendInfoGJM *)send_struct;
++ (id)connectSyncUrl:(BaseSendInfoGJM *)send_struct error:(NSError**)error;
++ (void)connectUrl:(BaseSendInfoGJM *)send_struct OnSuccess:(void (^)(id result))Onsuccess onfail:(void (^)(NSError *result))Onfail;
++ (void)connectUrl:(BaseSendInfoGJM *)send_struct progress:(nullable void (^)(NSProgress *   progress))uploadProgress OnSuccess:(void (^  )(id   result))Onsuccess onfail:(void (^  )(NSError *   result))Onfail;
 //回调
-+(void)AFNCompleteSuccess:(NCNetConnData * )connData responseObject:(id  )responseObject;
-+(void)AFNCompleteProgress:(NCNetConnData *)connData progress:(NSProgress * )uploadProgress;
-+(void)AFNCompleteFail:(NCNetConnData *)connData error:(NSError * )error;
++ (void)AFNCompleteSuccess:(NCNetConnData * )connData responseObject:(id  )responseObject;
++ (void)AFNCompleteProgress:(NCNetConnData *)connData progress:(NSProgress * )uploadProgress;
++ (void)AFNCompleteFail:(NCNetConnData *)connData error:(NSError * )error;
 
 + (void)addError:(NSDictionary*)dic postNsme:(NSString*)url;
+
+//down & up
+
 NS_ASSUME_NONNULL_END
+
+
 @end

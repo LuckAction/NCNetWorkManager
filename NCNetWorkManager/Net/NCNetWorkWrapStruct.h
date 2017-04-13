@@ -14,6 +14,7 @@
 @property (assign,nonatomic,readonly) NSInteger mode;
 @property (copy,nonatomic,readonly) NSString *parameterStr;
 @property (copy,nonatomic) NSString *url;
+@property (copy,nonatomic) NSString *saveUrl;
 @property (copy,nonatomic) NSMutableArray *media_data;
 @property (nonatomic, assign) BOOL isSynchronous; // 是否用同步方式发送请求
 @property (nonatomic,strong) void (^OnSuccessFunc)(id result);

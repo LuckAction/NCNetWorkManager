@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C340773D1E9F62780075BC0A /* NCNetWorkDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C340773C1E9F62780075BC0A /* NCNetWorkDownloadManager.m */; };
+		C34077401E9F7B020075BC0A /* NSObject+NCKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = C340773F1E9F7B020075BC0A /* NSObject+NCKVO.m */; };
+		C340774B1E9F9EB50075BC0A /* UAProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = C340774A1E9F9EB50075BC0A /* UAProgressView.m */; };
+		C34077501E9F9EEA0075BC0A /* DownViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C340774E1E9F9EEA0075BC0A /* DownViewController.m */; };
+		C34077511E9F9EEA0075BC0A /* DownViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C340774F1E9F9EEA0075BC0A /* DownViewController.xib */; };
+		C34077551E9F9F120075BC0A /* DownTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34077531E9F9F120075BC0A /* DownTableViewCell.m */; };
+		C34077561E9F9F120075BC0A /* DownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34077541E9F9F120075BC0A /* DownTableViewCell.xib */; };
+		C34077591E9FA4AB0075BC0A /* UIView+Tap.m in Sources */ = {isa = PBXBuildFile; fileRef = C34077581E9FA4AB0075BC0A /* UIView+Tap.m */; };
 		C3795A951E84B38B0012847E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3795A841E84B38B0012847E /* AppDelegate.m */; };
 		C3795A961E84B38B0012847E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3795A851E84B38B0012847E /* Assets.xcassets */; };
 		C3795A971E84B38B0012847E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3795A861E84B38B0012847E /* LaunchScreen.storyboard */; };
@@ -74,6 +82,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C340773B1E9F62780075BC0A /* NCNetWorkDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetWorkDownloadManager.h; sourceTree = "<group>"; };
+		C340773C1E9F62780075BC0A /* NCNetWorkDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetWorkDownloadManager.m; sourceTree = "<group>"; };
+		C340773E1E9F7B020075BC0A /* NSObject+NCKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NCKVO.h"; sourceTree = "<group>"; };
+		C340773F1E9F7B020075BC0A /* NSObject+NCKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NCKVO.m"; sourceTree = "<group>"; };
+		C34077491E9F9EB50075BC0A /* UAProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UAProgressView.h; sourceTree = "<group>"; };
+		C340774A1E9F9EB50075BC0A /* UAProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UAProgressView.m; sourceTree = "<group>"; };
+		C340774D1E9F9EEA0075BC0A /* DownViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownViewController.h; sourceTree = "<group>"; };
+		C340774E1E9F9EEA0075BC0A /* DownViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownViewController.m; sourceTree = "<group>"; };
+		C340774F1E9F9EEA0075BC0A /* DownViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownViewController.xib; sourceTree = "<group>"; };
+		C34077521E9F9F120075BC0A /* DownTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownTableViewCell.h; sourceTree = "<group>"; };
+		C34077531E9F9F120075BC0A /* DownTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownTableViewCell.m; sourceTree = "<group>"; };
+		C34077541E9F9F120075BC0A /* DownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownTableViewCell.xib; sourceTree = "<group>"; };
+		C34077571E9FA4AB0075BC0A /* UIView+Tap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Tap.h"; sourceTree = "<group>"; };
+		C34077581E9FA4AB0075BC0A /* UIView+Tap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Tap.m"; sourceTree = "<group>"; };
 		C350C5AD1E0510FE00537300 /* NCNetWorkManagerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NCNetWorkManagerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3795A831E84B38B0012847E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C3795A841E84B38B0012847E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -189,6 +211,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C34077481E9F9EB50075BC0A /* UAProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				C34077491E9F9EB50075BC0A /* UAProgressView.h */,
+				C340774A1E9F9EB50075BC0A /* UAProgressView.m */,
+				C34077571E9FA4AB0075BC0A /* UIView+Tap.h */,
+				C34077581E9FA4AB0075BC0A /* UIView+Tap.m */,
+			);
+			path = UAProgressView;
+			sourceTree = "<group>";
+		};
+		C340774C1E9F9EEA0075BC0A /* DownViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C340774D1E9F9EEA0075BC0A /* DownViewController.h */,
+				C340774E1E9F9EEA0075BC0A /* DownViewController.m */,
+				C340774F1E9F9EEA0075BC0A /* DownViewController.xib */,
+				C34077521E9F9F120075BC0A /* DownTableViewCell.h */,
+				C34077531E9F9F120075BC0A /* DownTableViewCell.m */,
+				C34077541E9F9F120075BC0A /* DownTableViewCell.xib */,
+			);
+			path = DownViewController;
+			sourceTree = "<group>";
+		};
 		C350C5A41E0510FE00537300 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +272,8 @@
 				C3795A921E84B38B0012847E /* NCNetTest.m */,
 				C3795A931E84B38B0012847E /* ViewController.h */,
 				C3795A941E84B38B0012847E /* ViewController.m */,
+				C34077481E9F9EB50075BC0A /* UAProgressView */,
+				C340774C1E9F9EEA0075BC0A /* DownViewController */,
 			);
 			path = NCNetWorkManagerDemo;
 			sourceTree = "<group>";
@@ -378,6 +426,8 @@
 				C3795D0C1E8501580012847E /* Constant.h */,
 				C3795D0D1E8501580012847E /* NCNetWorkNetManager.h */,
 				C3795D0E1E8501580012847E /* NCNetWorkNetManager.m */,
+				C340773B1E9F62780075BC0A /* NCNetWorkDownloadManager.h */,
+				C340773C1E9F62780075BC0A /* NCNetWorkDownloadManager.m */,
 				C3795D0F1E8501580012847E /* NCNetWorkSendManager.h */,
 				C3795D101E8501580012847E /* NCNetWorkSendManager.m */,
 				C3795D111E8501580012847E /* NCNetWorkWrapStruct.h */,
@@ -386,6 +436,8 @@
 				C3795D141E8501580012847E /* NSArray+AssociatedObject.m */,
 				C3795D151E8501580012847E /* NSObject+AssociatedObject.h */,
 				C3795D161E8501580012847E /* NSObject+AssociatedObject.m */,
+				C340773E1E9F7B020075BC0A /* NSObject+NCKVO.h */,
+				C340773F1E9F7B020075BC0A /* NSObject+NCKVO.m */,
 			);
 			path = Net;
 			sourceTree = "<group>";
@@ -462,9 +514,11 @@
 				C3795A991E84B38B0012847E /* Info.plist in Resources */,
 				C3795A981E84B38B0012847E /* Main.storyboard in Resources */,
 				C3795D281E8501580012847E /* Info.plist in Resources */,
+				C34077561E9F9F120075BC0A /* DownTableViewCell.xib in Resources */,
 				C3795A961E84B38B0012847E /* Assets.xcassets in Resources */,
 				C3795A971E84B38B0012847E /* LaunchScreen.storyboard in Resources */,
 				C3795D371E8501580012847E /* log.plist in Resources */,
+				C34077511E9F9EEA0075BC0A /* DownViewController.xib in Resources */,
 				C3795D1D1E8501580012847E /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,9 +546,11 @@
 				C3795A9C1E84B38B0012847E /* NCNetDataCollect.m in Sources */,
 				C3795D261E8501580012847E /* UIRefreshControl+AFNetworking.m in Sources */,
 				C3795D2D1E8501580012847E /* MJPropertyType.m in Sources */,
+				C34077591E9FA4AB0075BC0A /* UIView+Tap.m in Sources */,
 				C3795D1E1E8501580012847E /* README.md in Sources */,
 				C3795D1F1E8501580012847E /* AFAutoPurgingImageCache.m in Sources */,
 				C3795D3B1E8501580012847E /* NCNetWorkWrapStruct.m in Sources */,
+				C34077401E9F7B020075BC0A /* NSObject+NCKVO.m in Sources */,
 				C3795D2C1E8501580012847E /* MJPropertyKey.m in Sources */,
 				C3795D331E8501580012847E /* NCNetModel.m in Sources */,
 				C3795D311E8501580012847E /* NSObject+MJProperty.m in Sources */,
@@ -502,6 +558,8 @@
 				C3795D1B1E8501580012847E /* AFURLResponseSerialization.m in Sources */,
 				C3795A951E84B38B0012847E /* AppDelegate.m in Sources */,
 				C3795A9D1E84B38B0012847E /* NCNetTest.m in Sources */,
+				C34077551E9F9F120075BC0A /* DownTableViewCell.m in Sources */,
+				C340773D1E9F62780075BC0A /* NCNetWorkDownloadManager.m in Sources */,
 				C3795D341E8501580012847E /* DictionaryQueue.m in Sources */,
 				C3795D2A1E8501580012847E /* MJFoundation.m in Sources */,
 				C3795D171E8501580012847E /* AFHTTPSessionManager.m in Sources */,
@@ -512,11 +570,13 @@
 				C3795D3C1E8501580012847E /* NSArray+AssociatedObject.m in Sources */,
 				C3795D351E8501580012847E /* QueueObj.m in Sources */,
 				C3795D221E8501580012847E /* UIActivityIndicatorView+AFNetworking.m in Sources */,
+				C340774B1E9F9EB50075BC0A /* UAProgressView.m in Sources */,
 				C3795D1A1E8501580012847E /* AFURLRequestSerialization.m in Sources */,
 				C3795D1C1E8501580012847E /* AFURLSessionManager.m in Sources */,
 				C3795D181E8501580012847E /* AFNetworkReachabilityManager.m in Sources */,
 				C3795D2B1E8501580012847E /* MJProperty.m in Sources */,
 				C3795D301E8501580012847E /* NSObject+MJKeyValue.m in Sources */,
+				C34077501E9F9EEA0075BC0A /* DownViewController.m in Sources */,
 				C3795A9B1E84B38B0012847E /* NCNetCollection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

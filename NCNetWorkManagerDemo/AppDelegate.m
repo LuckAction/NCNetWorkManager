@@ -33,7 +33,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     //同步请求测试用例
     UpdateServer *update = [[UpdateServer alloc]init];
-    update.url = @"http://baike.baidu.com/item/三七/648675?sefr=cr";
+    update.url = [NSString stringWithFormat:@"http://urlv2.kewaimiao.com?appid=%@&version=%@",@"cn.miaotalk.iosapp",XcodeAppVersion];
     update.age = 18;
     NSString *name;
     name = [update setpeopelName:@"chenhenian" age:@"26" sex:@"1"];
