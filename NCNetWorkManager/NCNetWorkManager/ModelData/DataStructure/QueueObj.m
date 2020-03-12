@@ -17,7 +17,7 @@
     QueueObj *queue = [[QueueObj alloc]init];
     if (queue) {
         if (queue) {
-            queue->_maxCount = powf(10, 10);
+            queue->_maxCount = 1000;
         }
 
     }

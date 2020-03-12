@@ -33,7 +33,7 @@
 + (instancetype)creatQueue
 {
     DictionaryQueue *queue = [[DictionaryQueue alloc]init];
-    queue->_maxCount = powf(10, 10);
+    queue->_maxCount = 1000;
 
     return queue;
 }

@@ -2,11 +2,12 @@
 //  NCNetWorkManager.h
 //  NCNetWorkManager
 //
-//  Created by luck chen on 2017/3/24.
-//  Copyright © 2017年 luck chen. All rights reserved.
+//  Created by luck chen on 2020/3/12.
+//  Copyright © 2020 luck Action. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "NCNetManager.h"
 
 //! Project version number for NCNetWorkManager.
 FOUNDATION_EXPORT double NCNetWorkManagerVersionNumber;

@@ -18,7 +18,7 @@
 {
     StackObj *stack = [[StackObj alloc]init];
     if (stack) {
-        stack->_maxCount = powf(10, 10);
+        stack->_maxCount = 1000;
     }
     return stack;
 }
