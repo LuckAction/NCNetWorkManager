@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                    DESC
 
-  s.homepage     = "http://github.com/LuckAction/NCNetWorkManager"
+  s.homepage     = "http://github.com/LuckAction/NCNetWorkManager/README.md"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
