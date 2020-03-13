@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ED0B1251BFFD9E0080E5C4C /* Pods_NCNetWorkManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF96DE12C60F39361B4762B /* Pods_NCNetWorkManager.framework */; };
 		C308D83B241A248D00E79C2C /* NCNetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C308D839241A248D00E79C2C /* NCNetWorkManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C308D8A1241A24BE00E79C2C /* MJPropertyKey.h in Headers */ = {isa = PBXBuildFile; fileRef = C308D844241A24BD00E79C2C /* MJPropertyKey.h */; };
 		C308D8A2241A24BE00E79C2C /* NSObject+MJClass.h in Headers */ = {isa = PBXBuildFile; fileRef = C308D845241A24BD00E79C2C /* NSObject+MJClass.h */; };
@@ -91,10 +92,11 @@
 		C308D8F8241A261900E79C2C /* QueueObj.m in Sources */ = {isa = PBXBuildFile; fileRef = C308D895241A24BE00E79C2C /* QueueObj.m */; };
 		C308D8F9241A261900E79C2C /* StackObj.h in Headers */ = {isa = PBXBuildFile; fileRef = C308D896241A24BE00E79C2C /* StackObj.h */; };
 		C308D8FA241A261900E79C2C /* DictionaryQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C308D897241A24BE00E79C2C /* DictionaryQueue.m */; };
-		C308D8FD241A2A8B00E79C2C /* NCNetWorkManager.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C308D8FC241A2A8B00E79C2C /* NCNetWorkManager.podspec */; };
+		C382D244241B31B800EBBAC1 /* NCNetWorkManager.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C382D243241B31B800EBBAC1 /* NCNetWorkManager.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2563EAA6372874E8D856C493 /* Pods-NCNetWorkManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCNetWorkManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-NCNetWorkManager/Pods-NCNetWorkManager.release.xcconfig"; sourceTree = "<group>"; };
 		C308D836241A248D00E79C2C /* NCNetWorkManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NCNetWorkManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C308D839241A248D00E79C2C /* NCNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NCNetWorkManager.h; sourceTree = "<group>"; };
 		C308D83A241A248D00E79C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,7 +183,9 @@
 		C308D89B241A24BE00E79C2C /* log.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = log.plist; sourceTree = "<group>"; };
 		C308D89D241A24BE00E79C2C /* NCNetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetModel.m; sourceTree = "<group>"; };
 		C308D89E241A24BE00E79C2C /* NCNetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetModel.h; sourceTree = "<group>"; };
-		C308D8FC241A2A8B00E79C2C /* NCNetWorkManager.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NCNetWorkManager.podspec; sourceTree = "<group>"; };
+		C382D243241B31B800EBBAC1 /* NCNetWorkManager.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NCNetWorkManager.podspec; sourceTree = "<group>"; };
+		D4B1FC8F45FDC89A64EDC0FA /* Pods-NCNetWorkManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NCNetWorkManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NCNetWorkManager/Pods-NCNetWorkManager.debug.xcconfig"; sourceTree = "<group>"; };
+		FCF96DE12C60F39361B4762B /* Pods_NCNetWorkManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NCNetWorkManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,18 +193,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED0B1251BFFD9E0080E5C4C /* Pods_NCNetWorkManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		246EE2884D57187244B8C291 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF96DE12C60F39361B4762B /* Pods_NCNetWorkManager.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B117C6A4BF3BEDADB6EAED3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4B1FC8F45FDC89A64EDC0FA /* Pods-NCNetWorkManager.debug.xcconfig */,
+				2563EAA6372874E8D856C493 /* Pods-NCNetWorkManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C308D82C241A248D00E79C2C = {
 			isa = PBXGroup;
 			children = (
-				C308D8FC241A2A8B00E79C2C /* NCNetWorkManager.podspec */,
+				C382D243241B31B800EBBAC1 /* NCNetWorkManager.podspec */,
 				C308D838241A248D00E79C2C /* NCNetWorkManager */,
 				C308D837241A248D00E79C2C /* Products */,
+				6B117C6A4BF3BEDADB6EAED3 /* Pods */,
+				246EE2884D57187244B8C291 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -445,6 +469,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C308D83E241A248D00E79C2C /* Build configuration list for PBXNativeTarget "NCNetWorkManager" */;
 			buildPhases = (
+				C2067C8C77CADCE0BDCA69E0 /* [CP] Check Pods Manifest.lock */,
 				C308D831241A248D00E79C2C /* Headers */,
 				C308D832241A248D00E79C2C /* Sources */,
 				C308D833241A248D00E79C2C /* Frameworks */,
@@ -498,12 +523,37 @@
 			files = (
 				C308D8C7241A24BE00E79C2C /* README.md in Resources */,
 				C308D8F1241A24BF00E79C2C /* log.plist in Resources */,
-				C308D8FD241A2A8B00E79C2C /* NCNetWorkManager.podspec in Resources */,
+				C382D244241B31B800EBBAC1 /* NCNetWorkManager.podspec in Resources */,
 				C308D8C6241A24BE00E79C2C /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C2067C8C77CADCE0BDCA69E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NCNetWorkManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C308D832241A248D00E79C2C /* Sources */ = {
@@ -671,6 +721,7 @@
 		};
 		C308D83F241A248D00E79C2C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4B1FC8F45FDC89A64EDC0FA /* Pods-NCNetWorkManager.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -695,6 +746,7 @@
 		};
 		C308D840241A248D00E79C2C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2563EAA6372874E8D856C493 /* Pods-NCNetWorkManager.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
